@@ -10,7 +10,17 @@ import { useNavigate } from "react-router-dom";
 
 function Main () {
     let navigate = useNavigate();
+    let [data, setData] = useState([]);
 
+    useEffect( () => {
+        axios.get('http://localhost:8899/main', {
+            headers : {"Content-Type" : "application/json"}
+        })
+            .then( (res) => {
+                console.log("res.data ::" + JSON.stringify(res.data));
+                setData(res.data);
+            })
+    }, [])
 
     return(
       <div>
@@ -28,90 +38,14 @@ function Main () {
                         </div>
                     </header>
                     <section className="tiles">
-                        <article className="style1">
-                                        <span className="image">
-                                            <img src='../images/pic01.jpg' alt=""/>
-                                        </span>
-                           {/*<a href="${contextPath }/main/themeList?theme=힐링">*/}
-                            <a href='#' onClick={ () => {navigate('/themelist')} } >
-                                <h2>힐링</h2>
-                                <div className="content">
-                                    <p>몸도 마음도 지친 당신을 위해 준비했어요.</p>
-                                </div>
 
-                            </a>
-
-                        </article>
-                        <article className="style2">
-                                        <span className="image">
-                                            <img src='../images/pic02.jpg' alt=""/>
-                                        </span>
-
-                            <a href="${contextPath }/main/themeList?theme=식도락">
-
-                                <h2>식도락</h2>
-                                <div className="content">
-                                    <p>맛있는 음식으로 가볍게 기분전환하고 싶은 당신을 위해 준비했어요.</p>
-                                </div>
-
-                            </a>
-
-                        </article>
-                        <article className="style3">
-                                        <span className="image">
-                                            <img src='../images/pic03.jpg' alt=""/>
-                                        </span>
-
-                            <a href="${contextPath }/main/themeList?theme=관광지">
-
-                                <h2>관광지</h2>
-                                <div className="content">
-                                    <p>제주도의 유명한 관광지를 여행하고싶은 당신을 위해 준비했어요.</p>
-                                </div>
-
-                            </a>
-
-                        </article>
-
-                        <article className="style4">
-                                        <span className="image">
-                                            <img src='../images/pic04.jpg' alt=""/>
-                                        </span>
-                            <a href='#'>
-                                <h2>액티비티</h2>
-                                <div className="content">
-                                    <p>온몸으로 짜릿함을 느끼고 싶은 당신을 위해 준비했어요.</p>
-                                </div>
-                           </a>
-
-
-                        </article>
-                        <article className="style5">
-                                        <span className="image">
-                                            <img src='../images/pic05.jpg' alt=""/>
-                                        </span>
-
-                            <a href="${contextPath }/main/themeList?theme=글램핑">
-
-                                <h2>글램핑</h2>
-                                <div className="content">
-                                    <p>자작한 불소리와 함께 조용함을 즐기고 싶은 당신을 위해 준비했어요.</p>
-                                </div>
-                            </a>
-                        </article>
-                        <article className="style6">
-                                        <span className="image">
-                                            <img src='../images/pic06.jpg' alt=""/>
-                                        </span>
-
-                            <a href="${contextPath }/main/themeList?theme=드라이브">
-
-                                <h2>드라이브</h2>
-                                <div className="content">
-                                    <p>멋진 풍경과 함께 시원하게 달리고 싶은 당신을 위해 준비했어요.</p>
-                                </div>
-                            </a>
-                        </article>
+                    {
+                        data.map( (e , i) => {
+                            return(
+                                <ThemeList navigate={navigate} e={e} i={i+1}/>
+                            )
+                        })
+                    }
                     </section>
                 </div>
             </div>
@@ -119,4 +53,27 @@ function Main () {
     </div>
     )
 }
+
+function ThemeList(props){
+
+    return (
+        <>
+            <article className={'style' + props.i}>
+                 <span className="image">
+                     <img src={'../images/pic0'+props.i+'.jpg' }alt=""/>
+                 </span>
+                {/*<a href="${contextPath }/main/themeList?theme=힐링">*/}
+                <a href='' onClick={ () => {props.navigate('/themelist', {state : props.e.themeName})} } >
+                    <h2>{props.e.themeName}</h2>
+                    <div className="content">
+                        <p>{props.e.themeIntro}</p>
+                    </div>
+                </a>
+            </article>
+
+        </>
+    )
+}
+
+
 export default Main;
