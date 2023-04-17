@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.raina.traduler.TradulerReactApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-04-13T13:33:16" hostname="Raina-Queen.local" time="0.453">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.raina.traduler.TradulerReactApplicationTests" time="0.453"/>
+  <system-out><![CDATA[22:33:14.020 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [TradulerReactApplicationTests]: using SpringBootContextLoader
+22:33:14.027 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.raina.traduler.TradulerReactApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+22:33:14.028 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.raina.traduler.TradulerReactApplicationTests]: TradulerReactApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:33:14.058 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [TradulerReactApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+22:33:14.136 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/raina/Desktop/traduler_react/build/classes/java/main/com/raina/traduler/TradulerReactApplication.class]
+22:33:14.138 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.raina.traduler.TradulerReactApplication for test class com.raina.traduler.TradulerReactApplicationTests
+22:33:14.246 [Test worker] DEBUG org.springframework.test.context.util.TestContextSpringFactoriesUtils -- Skipping candidate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] due to a missing dependency. Specify custom TestExecutionListener classes or make the default TestExecutionListener classes and their required dependencies available. Offending class: [jakarta/servlet/ServletContext]
+22:33:14.261 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [TradulerReactApplicationTests]: [DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+22:33:14.262 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [TradulerReactApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+22:33:14.279 [Test worker] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener -- Performing dependency injection for test class com.raina.traduler.TradulerReactApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.5)
+
+2023-04-13T22:33:14.587+09:00  INFO 20082 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : Starting TradulerReactApplicationTests using Java 17.0.6 with PID 20082 (started by raina in /Users/raina/Desktop/traduler_react)
+2023-04-13T22:33:14.589+09:00  INFO 20082 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2023-04-13T22:33:14.945+09:00  INFO 20082 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13T22:33:14.956+09:00  INFO 20082 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 JPA repository interfaces.
+2023-04-13T22:33:15.010+09:00  WARN 20082 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.raina.traduler]' package. Please check your configuration.
+2023-04-13T22:33:15.287+09:00  INFO 20082 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13T22:33:15.627+09:00  INFO 20082 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f63a513
+2023-04-13T22:33:15.630+09:00  INFO 20082 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13T22:33:15.681+09:00  INFO 20082 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13T22:33:15.732+09:00  INFO 20082 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-13T22:33:16.121+09:00  INFO 20082 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-13T22:33:16.425+09:00  INFO 20082 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13T22:33:16.451+09:00  INFO 20082 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13T22:33:16.669+09:00  INFO 20082 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : Started TradulerReactApplicationTests in 2.341 seconds (process running for 3.893)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,34 @@
+.travel_main_header {
+  width: 100%;
+  height: 350px;
+
+  /*background-image: url('images/main_header.png');*/
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 1px;
+}
+.travel_main_title {
+  color: white;
+  font-size: 30px;
+  margin-top: 150px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+.travel_main_title_sub {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+}
+.travel_main_intro {
+  margin-top: 45px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.wrapp {
+  width: 100%; height:120px; margin: auto; background-color: #fff;
+  text-align: center; padding-top:20px; padding-bottom: 10px;
+}
