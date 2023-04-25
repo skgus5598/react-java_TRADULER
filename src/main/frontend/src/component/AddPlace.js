@@ -3,18 +3,43 @@ import './../style/font-awesome.min.css'
 import './../style/traduler.css';
 import Header from "./Header";
 import {useState} from "react";
+import axios from "axios";
+import {useLocation} from "react-router-dom";
 
 function AddPlace(){
+    const { state } = useLocation(); //테마명 가져오기
 
     const [files, setFiles] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [placeName, setPlaceName] = useState('');
+    const [contentIntro, setContentIntro] = useState('');
+    const [contentMain, setContentMain] = useState('');
+    const [placeAddr, setPlaceAddr] = useState('');
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
+
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("eeeclicked")
-        /*axios.post('http://localhost:8888/board/addContent', {
-            user : state.userNo,
-            boardContents : content,
+        console.log("files : " + files.toString() );
+        console.log("placeName : " + placeName);
+        console.log("contentIntro : " + contentIntro);
+        console.log( "contentMain : " + contentMain);
+        console.log("placeAddr" + placeAddr);
+        console.log("latitude : " + latitude);
+        console.log("longitude : " + longitude);
+
+        axios.post('http://localhost:8899/addPlace', {
+
+            themeName : state,
+            placeName : placeName,
+            contentIntro : contentIntro,
+            contentMain : contentMain,
+            placeAddr : placeAddr,
+            latitude : latitude,
+            longitude : longitude,
             files : files
         }, {
             headers : {
@@ -22,7 +47,7 @@ function AddPlace(){
             }
         }).then( res => {
             console.log(res.data);
-        })*/
+        })
     };
 
     const handleNextSlide = () => {
@@ -63,12 +88,12 @@ function AddPlace(){
                     <form method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
                         <div className="pp">
                             <div className="selectA"><b>Category</b></div>
-                            <div className="selectB">theme <input type="hidden" name="mainCategory" />
+                            <div className="selectB">  {state}
                             </div>
                         </div>
 
                             <p><label><br/>1. 이미지 첨부</label>
-                                <input type="file" id="file" onChange={handleFileChange} multiple/>
+                                <input type="file" id="file"  onChange={handleFileChange} multiple/>
                                 <div className="slideshow-container">
                                     {filePreviewElements}
                                     <button className="prev-button" onClick={handlePrevSlide}>
@@ -80,13 +105,12 @@ function AddPlace(){
                                 </div>
                             </p>
 
-                            <p>3. 장소 이름 <input type="text" name="placeName"/></p>
-                            <p>4. 제목 밑에 나올 한줄 요약<textarea rows="5" cols="10" name="contentOne"/></p>
-                            <p>5. 소개(내용)<textarea rows="5" cols="10" name="contentTwo"/></p>
-                            <p>5. 소개(내용)<textarea rows="5" cols="10" name="contentTwo"/></p>
-                            <p>6. 주소 : <input name="address"/></p>
-                            <p>7. 위도 : <input name="latitude"/> 경도 : <input name="longitude"/></p>
-                            <button>register</button>
+                            <p>3. 장소 이름 <input type="text"  onChange={(e)=>{setPlaceName(e.target.value)}}/></p>
+                            <p>4. 제목 밑에 나올 한줄 요약<textarea rows="5" cols="10" onChange={(e)=>{setContentIntro(e.target.value)}} /></p>
+                            <p>5. 소개(내용)<textarea rows="5" cols="10" onChange={(e)=>{setContentMain(e.target.value)}}/></p>
+                            <p>6. 주소 : <input type="text" onChange={(e)=>{setPlaceAddr(e.target.value)}}/></p>
+                            <p>7. 위도 : <input type="text" onChange={(e)=>{setLatitude(e.target.value)}} /> 경도 : <input type="text" onChange={(e)=>{setLongitude(e.target.value)}}/></p>
+                            <button type="submit">register</button>
                     </form>
                     <br/><a href="#">뒤로가기 </a>
                 </div>

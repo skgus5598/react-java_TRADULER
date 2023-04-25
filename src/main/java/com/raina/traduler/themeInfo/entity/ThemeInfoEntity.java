@@ -15,7 +15,7 @@ import lombok.*;
 public class ThemeInfoEntity {
 
     @Id
-    @Column(name = "THEME_NAME")
+    @Column(name = "THEME_NM")
     private String themeName;
 
     @Column(name = "THEME_INTRO")

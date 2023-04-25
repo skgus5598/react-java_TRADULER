@@ -34,7 +34,7 @@ function ThemeList () {
                         <a href="../index">뒤로가기 </a>
 
 
-                            <button onClick={() => { navigate('/addPlace')} }>Add
+                            <button onClick={() => { navigate('/addPlace', {state : state})} }>Add
                                 Place(관리자용)
                             </button>
 
