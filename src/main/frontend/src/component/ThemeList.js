@@ -11,10 +11,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 function ThemeList () {
     let navigate = useNavigate();
     let { state } = useLocation();
-
     console.log("state1 " + state);
-    console.log("state2 " + state);
 
+    let[ data, setData ] = useState([]);
+
+    useEffect( () => {
+        axios.get('http://localhost:8899/themeList', {
+                params : {
+                    theme : state
+                }
+            },
+            {
+                headers : {"Content-Type" : "application/json"}
+            })
+                .then( (res) => {
+                    console.log("res.data ::" + JSON.stringify(res.data));
+                    setData(res.data);
+
+
+                })
+    }, [])
 
     return(
 
@@ -40,22 +56,28 @@ function ThemeList () {
 
 
                         <section className="tiles">
-                            {/*<c:forEach var="list" items="${list }">*/}
-                                <article style={{width:'250px', height:'250px'}}>
+                            {
+                                data.map ( ( e , i) => {
+                                    return (
+
+                                    <article style={{width:'250px', height:'250px'}}>
 										<span className="image">
 											{/*<img src="${contextPath}/main/download?imageFile=${list.mainImageFile}"*/}
-                                            <img src="" style={{width:'250px', height:'250px'}}/>
+                                            <img src={'../images/pic0'+(i+1)+'.jpg' }alt=""/>
 										</span>
-                                    {/*<a href="${contextPath }/main/themeView?placeName=${list.placeName}">*/}
-                                    <a href="#" onClick={ () =>{navigate('/themeView')}} >
-                                        <h3>list.placename</h3>
-                                        <div className="content">
-                                            <p>list.contentOne</p>
-                                        </div>
-                                    </a>
-                                      관심콘텐츠 <img src="" style={{ width:"20px",  height:"20px"}}/> 0
-                                </article>
-                            {/*</c:forEach>*/}
+                                        {/*<a href="${contextPath }/main/themeView?placeName=${list.placeName}">*/}
+                                        <a href="" onClick={ () =>{navigate('/themeView' , {state : data[i] })}} >
+                                            <h3>{e.placeName}</h3>
+                                            <div className="content">
+                                                <p>{e.contentMain}</p>
+                                            </div>
+                                        </a>
+                                        관심콘텐츠 <img src="" style={{ width:"20px",  height:"20px"}}/> 0
+                                    </article>
+
+                                    )
+                                })
+                            }
                         </section>
                     </div>
                 </div>

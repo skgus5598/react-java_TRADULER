@@ -20,4 +20,6 @@ public class ThemeInfoEntity {
 
     @Column(name = "THEME_INTRO")
     private String themeIntro;
+
+
 }

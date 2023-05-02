@@ -1,8 +1,7 @@
 package com.raina.traduler.themeList.dto;
 
-import com.raina.traduler.fileStorage.FileEntity;
 import com.raina.traduler.themeInfo.entity.ThemeInfoEntity;
-import com.raina.traduler.themeList.entity.PlaceAddrEntity;
+import com.raina.traduler.themeList.entity.Address;
 import com.raina.traduler.themeList.entity.ThemeListEntity;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,9 +19,9 @@ public class ThemeListRequest {
     private String placeName;
     private String contentIntro;
     private String contentMain;
-    private String themeName;
+    private ThemeInfoEntity theme;
 
-    /*PlaceAddrEntity*/
+    /*Address*/
     private String placeAddr;
     private int latitude;
     private int longitude;
@@ -36,19 +35,10 @@ public class ThemeListRequest {
                 .placeName(placeName)
                 .contentIntro(contentIntro)
                 .contentMain(contentMain)
-                .themeName(themeName)
+                .theme(theme)
+                .placeAddress(new Address(placeAddr, latitude, longitude))
                 .build();
     }
-
-    public PlaceAddrEntity toPlaceAddrEntity(){
-        return PlaceAddrEntity.builder()
-                .placeAddr(placeAddr)
-                .latitude(latitude)
-                .longitude(longitude)
-                .build();
-    }
-
-    // fileEntity는 파일 프로세스 완료 후 서비스단에서 직접 만들기.
 
 
 }

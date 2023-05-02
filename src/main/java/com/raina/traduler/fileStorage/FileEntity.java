@@ -22,19 +22,19 @@ import java.util.Date;
 public class FileEntity {
 
     @Id
-    @Column(name = "FILE_NM")
-    private String fileName;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String originalFileName;
+
+    private String savedFileName;
 
     private String filePath;
 
     private Long fileSize;
 
-    private String savLoc;
-
-    @CreatedDate
     private LocalDateTime regDt;
 
-    @LastModifiedDate
     private LocalDateTime modDt;
 
     private String crtId;
@@ -44,16 +44,22 @@ public class FileEntity {
     @JoinColumn(name = "placeId")
     private ThemeListEntity themeList; //여기서 theme_nm이랑 place_id가져와보기
 
+    public FileEntity(String originFileName, String path, long size, String newFileName) {
+        this.originalFileName = originFileName;
+        this.filePath = path;
+        this.fileSize = size;
+        this.savedFileName = newFileName;
+        this.regDt = LocalDateTime.now();
+    }
+
+
+
     //themList만 setter만들어줬음
     public void setThemeList(ThemeListEntity themeList) {
         this.themeList = themeList;
     }
 
-    public FileEntity(String originalFileName, String filePath, Long fileSize){
-        this.fileName = originalFileName;
-        this.filePath = filePath;
-        this.fileSize = fileSize;
-    }
+
 
 
     //양방향 연관관계 -> 항상 양쪽에 값을 설정하자 (연관관계 편의 메서드)

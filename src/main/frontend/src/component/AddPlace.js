@@ -4,7 +4,7 @@ import './../style/traduler.css';
 import Header from "./Header";
 import {useState} from "react";
 import axios from "axios";
-import {useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function AddPlace(){
     const { state } = useLocation(); //테마명 가져오기
@@ -18,22 +18,15 @@ function AddPlace(){
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
 
-
+    let navigate = useNavigate();
+    let [resData , setResData] = useState({});
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("files : " + files.toString() );
-        console.log("placeName : " + placeName);
-        console.log("contentIntro : " + contentIntro);
-        console.log( "contentMain : " + contentMain);
-        console.log("placeAddr" + placeAddr);
-        console.log("latitude : " + latitude);
-        console.log("longitude : " + longitude);
 
         axios.post('http://localhost:8899/addPlace', {
-
-            themeName : state,
+            theme : state,
             placeName : placeName,
             contentIntro : contentIntro,
             contentMain : contentMain,
@@ -46,8 +39,17 @@ function AddPlace(){
                 "Content-Type" : "multipart/form-data"
             }
         }).then( res => {
-            console.log(res.data);
+            let copy = {...res.data};
+            console.log("copy :: " + JSON.stringify(copy))
+            setResData([copy]); // 안에 배열로
+            console.log("resdata " +  JSON.stringify(resData)) // 이게 자꾸 안담기네?
+  //          navigate('/themeView', {state : resData })
+             navigate('/themeList' , {state : state}) //테마명 가져감
+
         })
+            .catch( () =>{
+                alert("failed")
+            })
     };
 
     const handleNextSlide = () => {

@@ -1,6 +1,7 @@
 package com.raina.traduler.fileStorage;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -8,6 +9,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
 @Service
 public class FileHandler {
@@ -25,9 +28,17 @@ public class FileHandler {
         File file = new File(path);
 
         for(MultipartFile multipartFile : files){
-            String newFileName = System.nanoTime() + multipartFile.getOriginalFilename();
+        //    String newFileName = System.nanoTime() + multipartFile.getOriginalFilename();
+            //확장자 넣어주기
+            String extension = StringUtils.getFilenameExtension(multipartFile.getOriginalFilename());
+            System.out.println("extension : " + extension);
 
-            FileEntity fileEntity = new FileEntity(multipartFile.getOriginalFilename(), path, multipartFile.getSize());
+            String newFileName = UUID.randomUUID().toString().replaceAll("-", "")+"."+extension;
+            System.out.println("newfilename :: " + newFileName);
+
+            String originFileName =  + System.nanoTime() + multipartFile.getOriginalFilename().toLowerCase();
+
+            FileEntity fileEntity = new FileEntity(originFileName , path, multipartFile.getSize() , newFileName);
 
             fileList.add(fileEntity);
 

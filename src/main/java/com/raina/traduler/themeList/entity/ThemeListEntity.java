@@ -1,6 +1,8 @@
 package com.raina.traduler.themeList.entity;
 
 import com.raina.traduler.fileStorage.FileEntity;
+import com.raina.traduler.themeInfo.entity.ThemeInfoEntity;
+import com.raina.traduler.themeList.dto.ThemeListResponse;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,7 +26,12 @@ public class ThemeListEntity {
 
     private String contentMain;
 
-    private String themeName;
+    @OneToOne
+    @JoinColumn(name = "themeName")
+    private ThemeInfoEntity theme;
+
+    @Embedded
+    private Address placeAddress;
 
     ///////////////////////////////////////
 
