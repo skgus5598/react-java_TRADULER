@@ -7,6 +7,7 @@ import com.raina.traduler.themeList.dto.ThemeListRequest;
 import com.raina.traduler.themeList.dto.ThemeListResponse;
 import com.raina.traduler.themeList.entity.ThemeListEntity;
 import com.raina.traduler.themeList.service.ThemeListService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
@@ -15,9 +16,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin
+@CrossOrigin(value = {"*"}, exposedHeaders = {"Content-Disposition"})
 @RequiredArgsConstructor
 @RestController
 public class ThemeListController {
@@ -52,67 +56,22 @@ public class ThemeListController {
 
         return new ResponseEntity(service.addPlace(requestDto), HttpStatus.OK);
     }
-    @GetMapping("/readImages")
-    public ResponseEntity<Resource> getImage(@RequestParam ThemeListEntity themeList) throws IOException {
-        System.out.println("themeList ::: " + themeList.getPlaceId());
-        //List<FileEntity> images  = fileRepo.findAllByPlaceId(placeId);
-        List<FileEntity>  image = fileRepo.findByThemeList(themeList);
-        String fullPath = image.get(0).getFilePath()+image.get(0).getSavedFileName();
-        MediaType mediaType = MediaType.parseMediaType(Files.probeContentType(Paths.get(fullPath)));
-        UrlResource resource = new UrlResource("file:"+fullPath);
-        String contentDisposition = "attachment; filename=\"" + image.get(0).getOriginalFileName() + "\"";
-        System.out.println("contentdisposition :: " + contentDisposition);
-        System.out.println("resource :: " + resource.toString());
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(mediaType);
-        headers.setContentDisposition(ContentDisposition.parse(contentDisposition));
-        return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
- /*       return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, mediaType.toString())
-             //   .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
-                .body(resource);
- */   }
 
-   /* @GetMapping(value = "/readImages")
-    public List<Image> getImageList(int placeId ) throws Exception {
-        System.out.println("files :: " + files);
-        Resource resource = resourceLoader.getResource("/Users/raina/Desktop/traduler_react/img_repo/"+ files);
-        System.out.println("resource? " + resource);
-        File[] filesA = resource.getFile().listFiles((dir, name) -> !name.equals(".DS_Store")); // 맥OS에서 발생하는 임시 파일 예외처리
-        return Arrays.stream(filesA).map( file -> {
-            byte[] data = null;
-            try{
-                data = Files.readAllBytes(file.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return new Image(file.getName(), data);
-        }).collect(Collectors.toList());
+    @GetMapping("/readImages/{fileName}")
+    public void readImages(@PathVariable String fileName, HttpServletResponse response) throws IOException {
+        System.out.println("filename :::" + fileName);
+        response.addHeader("Content-disposition", "attachment; fileName="+fileName);
+        String path = "/Users/raina/Desktop/traduler_react/img_repo/";
+        FileEntity entity = fileRepo.findByOriginalFileName(fileName);
+        File file = new File(path+entity.getSavedFileName());
+        FileInputStream fis = new FileInputStream(file);
+        FileCopyUtils.copy(fis, response.getOutputStream());
+        fis.close();
     }
-*/
-    private static class Image{
-        private String name;
-        private byte[] data;
 
-        public Image(String name, byte[] data){
-            this.name = name;
-            this.data = data;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public byte[] getData() {
-            return data;
-        }
-
-        public void setData(byte[] data) {
-            this.data = data;
-        }
+    @DeleteMapping("/deleteContent/{placeId}")
+    public void deleteContent(@PathVariable Long placeId){
+        System.out.println("delete Content : " + placeId);
+        service.deleteContent(placeId);
     }
 }

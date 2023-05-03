@@ -13,4 +13,5 @@ public interface ThemeListService {
     public List<ThemeListResponse> getThemeList(ThemeListRequest requestDto) ;
     public ThemeListResponse addPlace(ThemeListRequest requestDto) throws Exception;
 
+    public void deleteContent(Long placeId);
 }

@@ -7,34 +7,43 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 function ThemeView(){
+    const navigate = useNavigate();
     const location = useLocation();
     const data = { ...location.state}
-    console.log("data " + JSON.stringify(data))
-    console.log("files :: " + data.files )
-    console.log("placeId : " + data.placeId);
 
     //이미지 불러오기
-    const [imageList, setImageList] = useState([]);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
-    useEffect( () => {
-        axios.get('http://localhost:8899/readImages' , {
-            params : {
-                themeList : data.placeId
-            },
-            headers : {"Content-Type" : "application/json; charset=UTF-8"},
-            responseType: "blob"
-        })
-            .then((res) => {
-                console.log("res?? " + JSON.stringify(res.data))
-                const blob = new Blob([res.data]);
-                console.log("blob????" + blob);
-                console.log("blob????" + JSON.stringify(blob));
+    const handleNextSlide = () => {
+        console.log("currentslide :: " + currentSlide)
+        setCurrentSlide((currentSlide + 1) % data.files.length);
+    };
 
-                console.log("resdata ::: " + JSON.stringify(res.data));
-                setImageList(res.data);
-            })
-    }, [])
+    const handlePrevSlide = () => {
+        console.log("currentslide :: " + currentSlide)
+        setCurrentSlide((currentSlide - 1 + data.files.length) % data.files.length);
+    };
 
+    const filePreviewElements = data.files.map((file, index) => (
+        <div
+            className={`slide ${index === currentSlide ? 'active' : ''}`}
+            key={index}
+        >
+            {index === currentSlide && (
+                <>
+                    <img  src={`http://localhost:8899/readImages/${file}`}  />
+                </>
+            )}
+        </div>
+    ));
+
+    const deleteContent = () => {
+        axios.delete('http://localhost:8899/deleteContent/'+data.placeId)
+            .then(res => {
+                console.log("res?" + JSON.stringify(res))
+                navigate('/themeList' , {state : data.themeName}) //테마명 가져감
+            });
+    }
 
 
     return(
@@ -43,13 +52,23 @@ function ThemeView(){
                 <div id="main">
                     <br/><a href="#">뒤로가기 </a>
 
-                        <form method="post" encType="multipart/form-data">
+                    <button onClick={deleteContent}>게시물삭제  </button>
+
                             <div className="inner" style={{textAlign : "center"}}>
                                 <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>
                                 <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h5>
 
                                 <div>
-                                    <img  src={`data:image/jpeg;base64,${imageList[0]}`}  />
+                                    {filePreviewElements}
+
+
+                                    <button className="prev-button" onClick={handlePrevSlide}>
+                                        &#10094;
+                                    </button>
+                                    <button className="next-button" onClick={handleNextSlide}>
+                                        &#10095;
+                                    </button>
+
                                 </div>
 
 {/*
@@ -64,7 +83,6 @@ function ThemeView(){
 
 
                             </div>
-                        </form>
 
                         <div className='flex'>
                             <div className="flexA" id="map" style={{width:"50%", height:"520px"}}></div>

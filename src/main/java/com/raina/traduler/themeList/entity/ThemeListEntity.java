@@ -18,7 +18,7 @@ public class ThemeListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int placeId;
+    private Long placeId;
 
     private String placeName;
 

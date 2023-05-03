@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ThemeListRepository extends JpaRepository<ThemeListEntity, Integer> {
+public interface ThemeListRepository extends JpaRepository<ThemeListEntity, Long> {
 
     List<ThemeListEntity> findAllByTheme(ThemeInfoEntity theme);
 }

@@ -45,4 +45,9 @@ public class ThemeListServiceImpl implements ThemeListService{
         return new ThemeListResponse(themeEntity);
 
     }
+
+    @Override
+    public void deleteContent(Long placeId) {
+        themeRepo.deleteById(placeId);
+    }
 }

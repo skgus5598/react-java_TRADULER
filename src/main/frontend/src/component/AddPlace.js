@@ -87,7 +87,6 @@ function AddPlace(){
                 <div id="main">
                     <div className="inner">
                     <h1>새로운 장소 추가(관리자)</h1>
-                    <form method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
                         <div className="pp">
                             <div className="selectA"><b>Category</b></div>
                             <div className="selectB">  {state}
@@ -112,8 +111,7 @@ function AddPlace(){
                             <p>5. 소개(내용)<textarea rows="5" cols="10" onChange={(e)=>{setContentMain(e.target.value)}}/></p>
                             <p>6. 주소 : <input type="text" onChange={(e)=>{setPlaceAddr(e.target.value)}}/></p>
                             <p>7. 위도 : <input type="text" onChange={(e)=>{setLatitude(e.target.value)}} /> 경도 : <input type="text" onChange={(e)=>{setLongitude(e.target.value)}}/></p>
-                            <button type="submit">register</button>
-                    </form>
+                            <button onSubmit={handleSubmit}>register</button>
                     <br/><a href="#">뒤로가기 </a>
                 </div>
                 </div>

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface FileRepository extends JpaRepository<FileEntity, String> {
 
+    FileEntity findByOriginalFileName(String fileName);
     List<FileEntity> findAllByThemeList(ThemeListEntity themeList);
     List<FileEntity>  findByThemeList(ThemeListEntity themeList);
 }

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ThemeListResponse {
 
     /*ThemeListEntity*/
-    private int placeId;
+    private Long placeId;
     private String placeName;
     private String contentIntro;
     private String contentMain;
