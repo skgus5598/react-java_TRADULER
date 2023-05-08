@@ -5,6 +5,7 @@ import './../style/main.css';
 import './../style/font-awesome.min.css'
 import './../style/traduler.css';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 
 
@@ -24,6 +25,7 @@ function Main () {
 
     return(
       <div>
+          <Header />
         <div className="travel_main_header" style={{background: 'url(../images/main_header.png)'}}>
             <h2 className="travel_main_title">여행의 설렘은 계획부터 시작되는 거니까.</h2>
             <h4 className="travel_main_title_sub">지금 트래줄러에서 설렘을 계획해 보세요.</h4>
