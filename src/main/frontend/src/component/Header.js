@@ -2,32 +2,26 @@ import './../style/main.css';
 import './../style/font-awesome.min.css'
 import './../style/traduler.css';
 import {useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function Header(){
-
-    const menuClicked = () => {
-        let menu = document.getElementById("menu")
-
-        menu.style.display = 'block';
-
-
-
-
-    }
+    let navigate = useNavigate();
 
     return (
         <div>
             <div className="wrapp">
                 <div>
-                    <a href="#">
-                        <img src="images/traduler-logo-green.png" height="80px"/></a></div>
+                    <a href="" onClick={ () => {navigate('/')}}>
+                        <img src="images/traduler-logo-green.png" height="80px"/>
+                    </a>
+                </div>
                 <div>
                     <header id="header">
                         <nav>
                             <ul>
-                                <li onClick={menuClicked}><a>LOGIN</a></li>
-                                <li><a href="#">MY TRADULE</a></li>
+                                <li ><a href='' onClick={ () => {navigate('/login') }}>LOGIN</a></li>
+                                <li ><a href="" onClick={ () => {navigate('/myPage') }}>MY TRADULE</a></li>
                             </ul>
                         </nav>
                     </header>
