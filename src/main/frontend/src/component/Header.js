@@ -11,7 +11,7 @@ function Header(){
     return (
         <div>
             <div className="wrapp">
-                <div>
+                <div className='logo'>
                     <a href="" onClick={ () => {navigate('/')}}>
                         <img src="images/traduler-logo-green.png" height="80px"/>
                     </a>

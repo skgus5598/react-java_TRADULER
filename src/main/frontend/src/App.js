@@ -6,9 +6,17 @@ import AddPlace from "./component/AddPlace";
 import LoginForm from "./component/LoginForm";
 import RegisterForm from "./component/RegisterForm";
 import MyPage from "./component/MyPage";
+import {useEffect} from "react";
 
 
 function App() {
+
+  useEffect( () => {
+      if (localStorage.watched === undefined){
+        localStorage.setItem('watched', JSON.stringify( []));
+      }
+    }, []);
+
   return (
     <div className="App">
       <Routes>

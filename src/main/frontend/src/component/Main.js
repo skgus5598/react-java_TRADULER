@@ -26,17 +26,19 @@ function Main () {
     return(
       <div>
           <Header />
+          {/*
         <div className="travel_main_header" style={{background: 'url(../images/main_header.png)'}}>
             <h2 className="travel_main_title">여행의 설렘은 계획부터 시작되는 거니까.</h2>
             <h4 className="travel_main_title_sub">지금 트래줄러에서 설렘을 계획해 보세요.</h4>
         </div>
+          */}
         <div id="wrapper">
             <div id="main">
                 <div className="inner">
                     <header>
                         <div className="travel_main_intro">
                             <h2>여행 계획의 시작은 ‘테마 정하기’예요.<br/>
-                                자신의 취향에 맞는 테마부터 한번 골라볼까요 ?</h2>
+                                자신의 취향에 맞는 테마부터 한번 골라볼까요 ?</h2><br/>
                         </div>
                     </header>
                     <section className="tiles">

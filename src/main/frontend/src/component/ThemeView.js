@@ -45,6 +45,28 @@ function ThemeView(){
             });
     }
 
+    const addMyList = () => {
+        const placeName = data.placeName;
+        const placeId = data.placeId;
+
+        const newItem = {
+            placeName,
+            placeId
+        };
+
+
+        let myList =  localStorage.getItem('watched');
+        myList = JSON.parse(myList);
+
+        myList.push(newItem)
+        console.log("newItem  :: " + newItem)
+        myList = new Set(myList);
+        myList = Array.from(myList);
+        localStorage.setItem('watched', JSON.stringify(myList))
+
+        alert("리스트에 추가!")
+    }
+
 
     return(
         <div>
@@ -52,7 +74,8 @@ function ThemeView(){
                 <div id="main">
                     <br/><a href="#">뒤로가기 </a>
 
-                    <button onClick={deleteContent}>게시물삭제  </button>
+                    <button onClick={deleteContent}>게시물삭제  </button>&nbsp;&nbsp;&nbsp;
+                    <button onClick={addMyList}>ADD TO MY LIST </button>
 
                             <div className="inner" style={{textAlign : "center"}}>
                                 <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>

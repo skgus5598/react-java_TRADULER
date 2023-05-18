@@ -35,14 +35,21 @@ const RegisterForm = () => {
             <h1>JOIN US  <br/> </h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="id">Id</label>
-                    <input
-                        type="text"
-                        id="id"
-                        value={loginId}
-                        onChange={handleLoginIdChange}
-                        required
-                    />
+                    <div style={{display:"flex"}}>
+                    <div style={{width :"70%"}}>
+                        <label htmlFor="id">Id</label>
+                        <input
+                            type="text"
+                            id="id"
+                            value={loginId}
+                            onChange={handleLoginIdChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label><button type={"button"} style={{marginTop:"35px"}}> ID check</button></label>
+                    </div>
+                    </div>
                     <label htmlFor="email">Email</label>
                     <input
                         type="email"
