@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import './../style/MyCalendar.css';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 
 const MyPage = () => {
@@ -45,13 +46,26 @@ const MyPage = () => {
         localStorage.setItem("watched", JSON.stringify(newEvents));
     };
 
+    const removeEvent = (info) => {
+        console.log("remove :: " +info);
+    }
+
     return (
         <>
             <Header />
-            <div className='calendar-head'>
-                <div>
-                    <h2>이벤트 목록</h2>
-                    <div id="external-events">
+            <div className='calendar-head' style={{display : 'flex'}}>
+                <div style={{marginTop : '100px', marginRight : '50px'}}>
+                    <h2>My List</h2>
+                    <div id="external-events"
+                         style={
+                              { justifyContent : 'center',
+                                display : 'flex',
+                                textAlign : "center",
+                                flexWrap: 'wrap',
+                                position: 'relative'
+                              }
+                          }
+                    >
                         {events.map((event) => (
                             <div
                                 className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2"
@@ -59,14 +73,19 @@ const MyPage = () => {
                                 data-id={event.placeId}
                                 key={event.placeId}
                                 style={{
-                                    backgroundColor: event.color,
-                                    borderColor: event.color,
-                                    cursor: "pointer"
+                                    cursor: "pointer",
+                                    backgroundColor : 'white',
+                                    borderColor : "pink"
                                 }}
                             >
-                                <div className="fc-event-main">
+                                <div className="fc-event-main" style={{color  : 'black'}}>
                                     <div>
                                         <strong>{event.placeName}</strong>
+                                    </div>
+                                    <div>
+                                        {/* 이미지 불러오기 */}
+                                        <img  src={`http://localhost:8899/readImages/${event.image}`}
+                                              style={{width : '100px', height : '100px'}}/>
                                     </div>
                                     <br />
                                 </div>
@@ -76,12 +95,18 @@ const MyPage = () => {
                 </div>
                 <div>
                     <FullCalendar
-                        plugins={[dayGridPlugin, interactionPlugin]}
+                        plugins={[dayGridPlugin,timeGridPlugin, interactionPlugin]}
+                        headerToolbar={{
+                            left: "prev,next today",
+                            center: "title",
+                            right: "dayGridMonth,timeGridWeek,timeGridDay"
+                        }}
                         initialView="dayGridMonth"
                         events={events}
                         editable={true}
                         droppable={true}
                         eventDrop={handleEventDrop}
+                        drop = {removeEvent}
                     />
                 </div>
             </div>

@@ -1,6 +1,7 @@
 package com.raina.traduler.themeList.controller;
 
 import com.raina.traduler.fileStorage.FileEntity;
+import com.raina.traduler.fileStorage.FileHandler;
 import com.raina.traduler.fileStorage.FileRepository;
 import com.raina.traduler.themeInfo.entity.ThemeInfoEntity;
 import com.raina.traduler.themeList.dto.ThemeListRequest;
@@ -40,6 +41,7 @@ public class ThemeListController {
     private final ThemeListService service;
 
     private final FileRepository fileRepo;
+    private final FileHandler fileHandler;
 
 
     @GetMapping("/themeList")
@@ -59,14 +61,7 @@ public class ThemeListController {
 
     @GetMapping("/readImages/{fileName}")
     public void readImages(@PathVariable String fileName, HttpServletResponse response) throws IOException {
-        System.out.println("filename :::" + fileName);
-        response.addHeader("Content-disposition", "attachment; fileName="+fileName);
-        String path = "/Users/raina/Desktop/traduler_react/img_repo/";
-        FileEntity entity = fileRepo.findByOriginalFileName(fileName);
-        File file = new File(path+entity.getSavedFileName());
-        FileInputStream fis = new FileInputStream(file);
-        FileCopyUtils.copy(fis, response.getOutputStream());
-        fis.close();
+        fileHandler.readImages(fileName, response, fileRepo.findByOriginalFileName(fileName) );
     }
 
     @DeleteMapping("/deleteContent/{placeId}")

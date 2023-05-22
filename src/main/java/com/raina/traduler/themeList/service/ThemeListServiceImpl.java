@@ -35,8 +35,6 @@ public class ThemeListServiceImpl implements ThemeListService{
     @Override
     public ThemeListResponse addPlace(ThemeListRequest requestDto) throws Exception {
         ThemeListEntity themeEntity = themeRepo.save(requestDto.toThemeListEntity()) ;
-
-
         List<FileEntity> fileList = fileHandler.saveFile(requestDto.getFiles());
         for(FileEntity file : fileList){
             themeEntity.addFile(file);

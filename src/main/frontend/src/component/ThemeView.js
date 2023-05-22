@@ -48,10 +48,12 @@ function ThemeView(){
     const addMyList = () => {
         const placeName = data.placeName;
         const placeId = data.placeId;
-
+        const image = data.files[0];
+        
         const newItem = {
             placeName,
-            placeId
+            placeId,
+            image
         };
 
 

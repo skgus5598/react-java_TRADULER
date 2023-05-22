@@ -1,10 +1,15 @@
 package com.raina.traduler.fileStorage;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -49,6 +54,16 @@ public class FileHandler {
             multipartFile.transferTo(new File(fileName));
         }
         return fileList;
+    }
+
+    public void readImages(String fileName, HttpServletResponse response, FileEntity entity) throws IOException {
+        System.out.println("filename :::" + fileName);
+        response.addHeader("Content-disposition", "attachment; fileName="+fileName);
+        String path = "/Users/raina/Desktop/traduler_react/img_repo/";
+        File file = new File(path+entity.getSavedFileName());
+        FileInputStream fis = new FileInputStream(file);
+        FileCopyUtils.copy(fis, response.getOutputStream());
+        fis.close();
     }
 
 }
