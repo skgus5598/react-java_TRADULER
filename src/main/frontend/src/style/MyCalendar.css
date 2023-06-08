@@ -5,3 +5,43 @@
     margin-bottom: 10%;
 }
 
+table tbody tr:nth-child(2n + 1) {
+    background-color: ghostwhite;
+}
+
+.fc-v-event .fc-event-main {
+    height: 100%;
+    background-color: cornflowerblue;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    background-color: white;
+    font-size: small;
+}
+
+.fc-direction-ltr .fc-button-group>.fc-button:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    margin-left: -1px;
+    background-color: white;
+    font-size: small;
+}
+
+.fc-direction-ltr .fc-toolbar>*>:not(:first-child) {
+    margin-left: 0.75em;
+    background-color: white;
+    font-size: small;
+}
+
+.fc .fc-button-group>.fc-button.fc-button-active, .fc .fc-button-group>.fc-button:active, .fc .fc-button-group>.fc-button:focus, .fc .fc-button-group>.fc-button:hover {
+    z-index: 1;
+    background-color: white;
+    font-size: small;
+}

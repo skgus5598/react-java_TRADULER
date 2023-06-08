@@ -2,7 +2,7 @@ import './../style/main.css';
 import './../style/font-awesome.min.css'
 import './../style/traduler.css';
 import Header from "./Header";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -74,7 +74,7 @@ function ThemeView(){
         <div>
                 <Header/>
                 <div id="main">
-                    <br/><a href="#">뒤로가기 </a>
+                    <br/><a onClick={ () => { navigate(-1); }}>뒤로가기 </a>
 
                     <button onClick={deleteContent}>게시물삭제  </button>&nbsp;&nbsp;&nbsp;
                     <button onClick={addMyList}>ADD TO MY LIST </button>

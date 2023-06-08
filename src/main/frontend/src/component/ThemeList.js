@@ -47,7 +47,7 @@ function ThemeList () {
                                 자신의 취향에 맞는 여행지를 선택하고 일정에 추가하여 여행을 떠나보세요 !
                             </p>
                         </header>
-                        <a href="../index">뒤로가기 </a>
+                        <a onClick={ () => {navigate(-1);}}>뒤로가기 </a>
 
 
                             <button onClick={() => { navigate('/addPlace', {state : state})} }>Add

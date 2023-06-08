@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './../style/LoginForm.css';
 import Header from "./Header"; // Import the CSS file for styling
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const LoginForm = () => {
     const navigate = useNavigate();
+
     const [loginId, setLoginId] = useState('');
     const [password, setPassword] = useState('');
 
@@ -18,8 +20,26 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can add your login logic here
         console.log(`id: ${loginId}, Password: ${password}`);
+
+        axios.post('http://localhost:8899/user/login', {
+            userId : loginId,
+            userPwd : password
+        }, {
+            headers : {"Content-Type" : "application/json"}
+        }).then( res => {
+            console.log(res.data);
+            if(res.data == 3){
+                localStorage.setItem("user", JSON.stringify(res.data))
+                navigate('/')
+
+            }else if(res.data == 1){
+                alert("존재하지 않는 아이디입니다.")
+            }else if(res.data == 2) {
+                alert("비밀번호를 다시 입력해주세요")
+            }
+        })
+
     };
 
     return (

@@ -1,12 +1,20 @@
 import './../style/main.css';
 import './../style/font-awesome.min.css'
 import './../style/traduler.css';
-import {useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 
 function Header(){
     let navigate = useNavigate();
+    let [user, setUser] = useState([]);
+
+    useEffect( () => {
+        const ifUser = localStorage.getItem("user");
+        if(ifUser){
+            setUser(JSON.parse(ifUser));
+        }
+    },[])
 
     return (
         <div>
@@ -20,8 +28,13 @@ function Header(){
                     <header id="header">
                         <nav>
                             <ul>
-                                <li ><a href='' onClick={ () => {navigate('/login') }}>LOGIN</a></li>
-                                <li ><a href="" onClick={ () => {navigate('/myPage') }}>MY TRADULE</a></li>
+                                {
+                                    user == '' || user == null
+                                        ? <li ><a href='' onClick={ () => {navigate('/login') }}>LOGIN</a></li>
+                                        : <li ><a href='' onClick={ () => {navigate('/login') }}>LOGOUT</a></li>
+                                }
+
+                                <li ><a href="" onClick={ () => {navigate('/myPageMenu') }}>MY TRADULE</a></li>
                             </ul>
                         </nav>
                     </header>

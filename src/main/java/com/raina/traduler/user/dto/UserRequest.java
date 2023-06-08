@@ -1,15 +1,17 @@
 package com.raina.traduler.user.dto;
 
 import com.raina.traduler.user.entity.UserEntity;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@ToString
 public class UserRequest {
 
-    public String userId;
-    public String userPwd;
-    public String userEmail;
+    private String userId;
+    private String userPwd;
+    private String userEmail;
 
     public UserEntity toEntity() {
         return UserEntity.builder()

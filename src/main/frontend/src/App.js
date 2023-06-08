@@ -5,8 +5,10 @@ import ThemeView from "./component/ThemeView";
 import AddPlace from "./component/AddPlace";
 import LoginForm from "./component/LoginForm";
 import RegisterForm from "./component/RegisterForm";
-import MyPage from "./component/MyPage";
 import {useEffect} from "react";
+import MyPageMenu from "./component/MyPageMenu";
+import MyPage from "./component/MyPage";
+import MySchedule from "./component/MySchedule";
 
 
 function App() {
@@ -27,7 +29,9 @@ function App() {
         <Route path='/addPlace' element={<AddPlace />}></Route>
         <Route path='/login' element={<LoginForm /> }></Route>
         <Route path='/register' element={<RegisterForm/> }></Route>
+        <Route path='/myPageMenu' element={<MyPageMenu/> }></Route>
         <Route path='/myPage' element={<MyPage/> }></Route>
+        <Route path='/mySchedule' element={<MySchedule/> }></Route>
 
       </Routes>
 

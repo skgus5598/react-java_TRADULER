@@ -54,7 +54,7 @@ const MyPage = () => {
         <>
             <Header />
             <div className='calendar-head' style={{display : 'flex'}}>
-                <div style={{marginTop : '100px', marginRight : '50px'}}>
+                <div style={{marginTop : '100px', marginRight : '50px' , width : '35%'}}>
                     <h2>My List</h2>
                     <div id="external-events"
                          style={
@@ -66,34 +66,41 @@ const MyPage = () => {
                               }
                           }
                     >
-                        {events.map((event) => (
-                            <div
-                                className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2"
-                                title={event.placeName}
-                                data-id={event.placeId}
-                                key={event.placeId}
-                                style={{
-                                    cursor: "pointer",
-                                    backgroundColor : 'white',
-                                    borderColor : "pink"
-                                }}
-                            >
-                                <div className="fc-event-main" style={{color  : 'black'}}>
-                                    <div>
-                                        <strong>{event.placeName}</strong>
+                        {
+                            events.length > 0  ?
+                                events.map((event) => (
+                                <div
+                                    className="fc-event fc-h-event mb-1 fc-daygrid-event fc-daygrid-block-event p-2"
+                                    title={event.placeName}
+                                    data-id={event.placeId}
+                                    key={event.placeId}
+                                    style={{
+                                        cursor: "pointer",
+                                        backgroundColor : 'white',
+                                        borderColor : "pink"
+                                    }}
+                                >
+                                    <div className="fc-event-main" style={{color  : 'black'}}>
+                                        <div>
+                                            <strong>{event.placeName}</strong>
+                                        </div>
+                                        <div>
+                                            {/* 이미지 불러오기 */}
+                                            <img  src={`http://localhost:8899/readImages/${event.image}`}
+                                                  style={{width : '150px', height : '150px'}}/>
+                                        </div>
+                                        <br />
                                     </div>
-                                    <div>
-                                        {/* 이미지 불러오기 */}
-                                        <img  src={`http://localhost:8899/readImages/${event.image}`}
-                                              style={{width : '100px', height : '100px'}}/>
-                                    </div>
-                                    <br />
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                            : <div> <br/><br/>
+                                    트레줄러에서 원하는 테마를 선택하여 <br/>
+                                    나의리스트에 추가해주세요
+                              </div>
+                        }
                     </div>
                 </div>
-                <div>
+                <div style={{marginTop : '100px', marginRight : '50px' , width : '65%'}}>
                     <FullCalendar
                         plugins={[dayGridPlugin,timeGridPlugin, interactionPlugin]}
                         headerToolbar={{

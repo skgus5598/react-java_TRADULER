@@ -37,3 +37,11 @@
 
 }
 
+.mytradulermenu{
+  border: 1px solid black;
+  margin-right: 5%;
+  height: 250px;
+  width: 250px;
+  padding: 1em;
+  border-radius: 4px;
+}

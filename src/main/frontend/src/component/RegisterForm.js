@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './../style/LoginForm.css';
 import Header from "./Header"; // Import the CSS file for styling
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RegisterForm = () => {
 
@@ -13,6 +14,7 @@ const RegisterForm = () => {
 
     const handleLoginIdChange = (e) => {
         setLoginId(e.target.value);
+        document.getElementById('idCheckBtn').value = 0;
     };
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
@@ -22,10 +24,52 @@ const RegisterForm = () => {
         setPassword(e.target.value);
     };
 
+    const idCheck = () => {
+        console.log("idCheck : " + loginId)
+        axios.post('http://localhost:8899/user/checkId', {
+            userId : loginId
+        }, {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }).then( res => {
+            if(JSON.stringify(res.data) == 'true'  ){
+                alert("사용 가능한 아이디입니다.")
+                document.getElementById('idCheckBtn').value = 1;
+            }else{
+                alert("이미 등록된 아이디입니다.")
+                document.getElementById('idCheckBtn').value = 2;
+            }
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can add your login logic here
-        console.log(`Email: ${email}, Password: ${password}`);
+        console.log("? " + document.getElementById('idCheckBtn').value)
+        console.log(`id : ${loginId}, Email: ${email}, Password: ${password}`);
+        console.log(loginId +"/" + password +"/" + email)
+        if( document.getElementById('idCheckBtn').value != 1) {
+            alert("아이디 중복확인을 해주세요")
+            return false;
+        }else{
+            axios.post('http://localhost:8899/user/register', {
+                userId : loginId,
+                userPwd : password,
+                userEmail : email
+            }, {
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            }).then( res => {
+                console.log(res.data);
+                if(res.data.userId != null){
+                    alert("회원가입이 완료되었습니다. 로그인을 해주세요");
+                    navigate('/login');
+                }else{
+                    alert("회원가입에 실패하였습니다.")
+                }
+            })
+        }
     };
 
     return (
@@ -47,7 +91,7 @@ const RegisterForm = () => {
                         />
                     </div>
                     <div>
-                        <label><button type={"button"} style={{marginTop:"35px"}}> ID check</button></label>
+                        <label><button id={'idCheckBtn'} value={0} type={"button"} onClick={ idCheck } style={{marginTop:"35px"}}> ID check</button></label>
                     </div>
                     </div>
                     <label htmlFor="email">Email</label>

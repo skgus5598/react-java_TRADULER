@@ -4,5 +4,10 @@ import com.raina.traduler.user.dto.UserRequest;
 import com.raina.traduler.user.dto.UserResponse;
 
 public interface UserService {
-    Boolean registerUser(String inputId);
+    Boolean checkId(String inputId);
+
+    UserResponse registerUser(UserRequest request);
+
+    int login(UserRequest request);
+
 }
