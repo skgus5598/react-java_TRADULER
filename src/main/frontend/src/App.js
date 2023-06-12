@@ -13,6 +13,21 @@ import MySchedule from "./component/MySchedule";
 
 function App() {
 
+  // login cookie storage
+  const today = new Date()
+  const objString = localStorage.getItem("userCookie");
+  const obj = JSON.parse(objString);
+  console.log("App.js) userCookie : " + localStorage.getItem("userCookie"))
+  //localStorage.removeItem("userCookie")
+  useEffect( () => {
+    if(obj != null){
+        if(today.toUTCString() > obj.expire ){
+            localStorage.removeItem("userCookie")
+        }
+    }
+  }, []);
+
+  //
   useEffect( () => {
       if (localStorage.watched === undefined){
         localStorage.setItem('watched', JSON.stringify( []));

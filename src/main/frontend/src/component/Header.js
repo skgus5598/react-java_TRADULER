@@ -10,11 +10,18 @@ function Header(){
     let [user, setUser] = useState([]);
 
     useEffect( () => {
-        const ifUser = localStorage.getItem("user");
+        const ifUser = localStorage.getItem("userCookie");
         if(ifUser){
             setUser(JSON.parse(ifUser));
         }
-    },[])
+    },[]);
+
+    const logoutBtn = () => {
+        if(window.confirm("로그아웃 하시겠습니까?")){
+            localStorage.removeItem("userCookie")
+            return navigate("/")
+        }
+    }
 
     return (
         <div>
@@ -31,23 +38,13 @@ function Header(){
                                 {
                                     user == '' || user == null
                                         ? <li ><a href='' onClick={ () => {navigate('/login') }}>LOGIN</a></li>
-                                        : <li ><a href='' onClick={ () => {navigate('/login') }}>LOGOUT</a></li>
+                                        : <li >{user.value} 님 방가^^!<a href='' onClick={ () => { logoutBtn() }}>LOGOUT</a></li>
                                 }
 
                                 <li ><a href="" onClick={ () => {navigate('/myPageMenu') }}>MY TRADULE</a></li>
                             </ul>
                         </nav>
                     </header>
-                    <nav id="menu">
-                        <h3>유저아이디 : abc</h3>
-                        <h2>Menu</h2>
-                        <ul>
-                            <li><a href="#">HOME</a></li>
-                            <li><a href="#">리뷰 게시판</a></li>
-                            <li><a href="#">QnA 게시판</a></li>
-                            <li><a href="#">MY PAGE</a></li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
 

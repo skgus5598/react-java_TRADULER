@@ -18,6 +18,15 @@ const LoginForm = () => {
         setPassword(e.target.value);
     };
 
+    //Login Cookie create
+    const expireTime = new Date();
+    expireTime.setMinutes(expireTime.getMinutes()+1) // 1mins
+
+    const obj = {
+        value : loginId,
+        expire : expireTime.toUTCString() // GMT
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`id: ${loginId}, Password: ${password}`);
@@ -30,7 +39,9 @@ const LoginForm = () => {
         }).then( res => {
             console.log(res.data);
             if(res.data == 3){
-                localStorage.setItem("user", JSON.stringify(res.data))
+            //    localStorage.setItem("userCookie", JSON.stringify(res.data))
+                localStorage.setItem("userCookie", JSON.stringify(obj))
+
                 navigate('/')
 
             }else if(res.data == 1){
