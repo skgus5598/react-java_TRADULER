@@ -23,8 +23,8 @@ public class ThemeListRequest {
 
     /*Address*/
     private String placeAddr;
-    private int latitude;
-    private int longitude;
+    private String latitude;
+    private String longitude;
 
     /*FileEntity*/
     private List<MultipartFile> files;

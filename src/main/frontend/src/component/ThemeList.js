@@ -62,14 +62,13 @@ function ThemeList () {
 
                                     <article style={{width:'250px', height:'250px'}}>
 										<span className="image">
-											{/*<img src="${contextPath}/main/download?imageFile=${list.mainImageFile}"*/}
-                                            <img src={'../images/pic0'+(i+1)+'.jpg' }alt=""/>
+											 <img style={{ width:"250px",  height:"250px"}}  src={`http://localhost:8899/readImages/${e.files[0]}`}  />
 										</span>
                                         {/*<a href="${contextPath }/main/themeView?placeName=${list.placeName}">*/}
                                         <a href="" onClick={ () =>{navigate('/themeView' , {state : data[i] })}} >
                                             <h3>{e.placeName}</h3>
                                             <div className="content">
-                                                <p>{e.contentMain}</p>
+                                                <p>{e.contentIntro}</p>
                                             </div>
                                         </a>
                                         관심콘텐츠 <img src="" style={{ width:"20px",  height:"20px"}}/> 0

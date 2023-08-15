@@ -81,22 +81,22 @@ function ThemeView(){
 
                             <div className="inner" style={{textAlign : "center"}}>
                                 <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>
-                                <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h5>
+                                <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentIntro}</h5>
 
                                 <div>
                                     {filePreviewElements}
-
-
                                     <button className="prev-button" onClick={handlePrevSlide}>
                                         &#10094;
                                     </button>
                                     <button className="next-button" onClick={handleNextSlide}>
                                         &#10095;
                                     </button>
-
                                 </div>
+                                <br/><br/>
+                                <h3><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h3>
 
-{/*
+
+                                {/*
                                 <div>
                                      이미지 파일 리스트를 반복문을 이용하여 이미지 요소에 대한 JSX를 생성합니다.
                                     {imageList.map((image, index) => (

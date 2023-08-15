@@ -25,8 +25,8 @@ public class ThemeListResponse {
 
     /*Addr*/
     private String placeAddr;
-    private int latitude;
-    private int longitude;
+    private String latitude;
+    private String longitude;
 
 
 

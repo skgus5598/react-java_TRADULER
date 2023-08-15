@@ -14,10 +14,10 @@ public class Address {
     private String placeAddr;
 
     @Column(name = "PLACE_LATITUDE")
-    private int latitude;
+    private String latitude;
 
     @Column(name = "PLACE_LONGITUDE")
-    private int longitude;
+    private String longitude;
 
 
 
