@@ -9,6 +9,7 @@ import com.raina.traduler.themeList.dto.ThemeListResponse;
 import com.raina.traduler.themeList.entity.ThemeListEntity;
 import com.raina.traduler.themeList.repository.ThemeListRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ThemeListServiceImpl implements ThemeListService{
 
     private final ThemeListRepository themeRepo;
@@ -29,11 +31,26 @@ public class ThemeListServiceImpl implements ThemeListService{
         entityList.forEach( e -> {
             responseList.add(new ThemeListResponse(e));
         });
-        return responseList;
+
+        //React.js에선 취약점을 완전히 차단하기 위해 무조건 텍스트 형태로만 렌더링하도록 설정되어 있다고 함
+        //불러올 때 React에서 \n처리 안해줌. 여기서 replace 할 필요 없다는 말
+
+
+       return responseList;
     }
 
     @Override
     public ThemeListResponse addPlace(ThemeListRequest requestDto) throws Exception {
+
+        /*
+            contentmain => blank(""), change Line("/br") processing
+         */
+        String contentOrigin = requestDto.getContentMain();
+        String contentModi = contentOrigin.replace("\r\n","<br>");
+        log.info("modified content : " + contentModi );
+
+        requestDto.setContentMain(contentModi);
+
         ThemeListEntity themeEntity = themeRepo.save(requestDto.toThemeListEntity()) ;
         List<FileEntity> fileList = fileHandler.saveFile(requestDto.getFiles());
         for(FileEntity file : fileList){

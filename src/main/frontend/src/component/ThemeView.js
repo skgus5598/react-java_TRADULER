@@ -93,8 +93,20 @@ function ThemeView(){
                                     </button>
                                 </div>
                                 <br/><br/>
-                                <h3><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h3>
-
+                                {
+                                    data.contentMain.split("<br>").map((line) => {
+                                        return (
+                                            <h3>
+                                                <input type="hidden" name="mainCategory" value="mainCategory"/>
+                                                {line}
+                                                <br/>
+                                            </h3>
+                                        )
+                                    })
+                                }
+                                {
+//                                    <h3><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h3>
+                                }
 
                                 {/*
                                 <div>
