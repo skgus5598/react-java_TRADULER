@@ -2,6 +2,7 @@ import './../style/main.css';
 import './../style/font-awesome.min.css'
 import './../style/traduler.css';
 import Header from "./Header";
+import Gmap from "./Gmap";
 import { useNavigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -49,7 +50,7 @@ function ThemeView(){
         const placeName = data.placeName;
         const placeId = data.placeId;
         const image = data.files[0];
-        
+
         const newItem = {
             placeName,
             placeId,
@@ -72,43 +73,43 @@ function ThemeView(){
 
     return(
         <div>
-                <Header/>
-                <div id="main">
-                    <br/><a onClick={ () => { navigate(-1); }}>뒤로가기 </a>
+            <Header/>
+            <div id="main">
+                <br/><a onClick={ () => { navigate(-1); }}>뒤로가기 </a>
 
-                    <button onClick={deleteContent}>게시물삭제  </button>&nbsp;&nbsp;&nbsp;
-                    <button onClick={addMyList}>ADD TO MY LIST </button>
+                <button onClick={deleteContent}>게시물삭제  </button>&nbsp;&nbsp;&nbsp;
+                <button onClick={addMyList}>ADD TO MY LIST </button>
+                <br/><br/>
+                <div className="inner" style={{textAlign : "center"}}>
+                    <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>
+                    <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentIntro}</h5>
 
-                            <div className="inner" style={{textAlign : "center"}}>
-                                <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>
-                                <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentIntro}</h5>
-
-                                <div>
-                                    {filePreviewElements}
-                                    <button className="prev-button" onClick={handlePrevSlide}>
-                                        &#10094;
-                                    </button>
-                                    <button className="next-button" onClick={handleNextSlide}>
-                                        &#10095;
-                                    </button>
-                                </div>
-                                <br/><br/>
-                                {
-                                    data.contentMain.split("<br>").map((line) => {
-                                        return (
-                                            <h3>
-                                                <input type="hidden" name="mainCategory" value="mainCategory"/>
-                                                {line}
-                                                <br/>
-                                            </h3>
-                                        )
-                                    })
-                                }
-                                {
+                    <div>
+                        {filePreviewElements}
+                        <button className="prev-button" onClick={handlePrevSlide}>
+                            &#10094;
+                        </button>
+                        <button className="next-button" onClick={handleNextSlide}>
+                            &#10095;
+                        </button>
+                    </div>
+                    <br/><br/>
+                    {
+                        data.contentMain.split("<br>").map((line) => {
+                            return (
+                                <h3>
+                                    <input type="hidden" name="mainCategory" value="mainCategory"/>
+                                    {line}
+                                    <br/>
+                                </h3>
+                            )
+                        })
+                    }
+                    {
 //                                    <h3><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h3>
-                                }
+                    }
 
-                                {/*
+                    {/*
                                 <div>
                                      이미지 파일 리스트를 반복문을 이용하여 이미지 요소에 대한 JSX를 생성합니다.
                                     {imageList.map((image, index) => (
@@ -116,30 +117,34 @@ function ThemeView(){
                                     ))}
                                 </div>
 */}
+                </div>
 
+                {/*Google Map, marker*/}
+                <div style={{textAlign : "center"}}>
+                    <Gmap lat={data.latitude} lng={data.longitude} />
+                    <label >주소 : {data.placeAddr}</label>
+                </div>
 
+                <div className='flex'>
+                    <div className="flexA" id="map" style={{width:"50%", height:"520px"}}></div>
 
-                            </div>
-
-                        <div className='flex'>
-                            <div className="flexA" id="map" style={{width:"50%", height:"520px"}}></div>
-
-                            <div className="flexB">
-                                <div className="flexBa">
-                                    <strong>주변 맛집을 추천해주세요</strong>
-                                </div>
-                                <div>
-                                    <div id="reply"></div>
-                                </div>
-                            </div>
+                    <div className="flexB">
+                        <div className="flexBa">
+                            <strong>주변 맛집을 추천해주세요</strong>
                         </div>
-                        <div style={{display: "flex"}}>
+                        <div>
+                            <div id="reply"></div>
+                        </div>
+                    </div>
+                </div>
+
+                {/*  <div style={{display: "flex"}}>
                             <label style={{width: "50%"}}>주소 : {data.placeAddr}</label>
                             <div style={{width: "50%"}}>
-
+                                <Gmap />
                             </div>
-                        </div>
-                </div>
+                        </div>*/}
+            </div>
         </div>
     )
 }
