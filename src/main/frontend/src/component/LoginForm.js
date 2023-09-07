@@ -84,7 +84,7 @@ const LoginForm = () => {
             <br/>
             <label> Don't you have an account? &nbsp;&nbsp;&nbsp;
                 <a href='' onClick={ () => {navigate('/register')}} style={{width : '100%'}}>
-                    <h2>&#10132;REGISTER</h2>
+                    <h2>&#10132;SIGN UP</h2>
                 </a>
             </label>
         </div>

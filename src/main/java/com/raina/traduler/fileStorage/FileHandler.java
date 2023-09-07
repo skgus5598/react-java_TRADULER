@@ -20,6 +20,9 @@ import java.util.UUID;
 @Service
 public class FileHandler {
 
+    //파일 저장 경로
+    public static final String PATH = "/Users/raina/Desktop/traduler_react/img_repo/";
+
     public List<FileEntity> saveFile(List<MultipartFile> files) throws Exception{
 
         List<FileEntity> fileList = new ArrayList<>();
@@ -28,9 +31,7 @@ public class FileHandler {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String currentDate = now.format(formatter);
 
-        //파일 저장 경로
-        String path = "/Users/raina/Desktop/traduler_react/img_repo/";
-        File file = new File(path);
+        File file = new File(PATH);
 
         for(MultipartFile multipartFile : files){
         //    String newFileName = System.nanoTime() + multipartFile.getOriginalFilename();
@@ -43,14 +44,14 @@ public class FileHandler {
 
             String originFileName =  + System.nanoTime() + multipartFile.getOriginalFilename().toLowerCase();
 
-            FileEntity fileEntity = new FileEntity(originFileName , path, multipartFile.getSize() , newFileName);
+            FileEntity fileEntity = new FileEntity(originFileName , PATH, multipartFile.getSize() , newFileName);
 
             fileList.add(fileEntity);
 
             System.out.println("filelist : " + fileList);
 
             //로컬 경로 저장
-            String fileName = path + newFileName;
+            String fileName = PATH + newFileName;
             multipartFile.transferTo(new File(fileName));
         }
         return fileList;
@@ -59,11 +60,24 @@ public class FileHandler {
     public void readImages(String fileName, HttpServletResponse response, FileEntity entity) throws IOException {
         System.out.println("filename :::" + fileName);
         response.addHeader("Content-disposition", "attachment; fileName="+fileName);
+        System.out.println("response header::" + response.getHeader("Content-disposition"));
         String path = "/Users/raina/Desktop/traduler_react/img_repo/";
         File file = new File(path+entity.getSavedFileName());
         FileInputStream fis = new FileInputStream(file);
         FileCopyUtils.copy(fis, response.getOutputStream());
         fis.close();
     }
+
+    public void deleteImages(List<FileEntity> fileEntities){
+
+        fileEntities.forEach( e -> {
+            File file = new File(PATH  + e.getSavedFileName());
+            if (file.exists()){
+                file.delete();
+            }
+        });
+    }
+
+
 
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +64,13 @@ public class ThemeListServiceImpl implements ThemeListService{
 
     @Override
     public void deleteContent(Long placeId) {
+
+        List<FileEntity> fileEntities = fileRepo.findAllByThemeList_PlaceId(placeId);
+
+        // delete files from local repository
+        fileHandler.deleteImages(fileEntities);
+
         themeRepo.deleteById(placeId);
+
     }
 }

@@ -39,11 +39,13 @@ function ThemeView(){
     ));
 
     const deleteContent = () => {
-        axios.delete('http://localhost:8899/deleteContent/'+data.placeId)
-            .then(res => {
-                console.log("res?" + JSON.stringify(res))
-                navigate('/themeList' , {state : data.themeName}) //테마명 가져감
-            });
+        if(window.confirm("Are you sure you want to delete this Theme?")){
+            axios.delete('http://localhost:8899/deleteContent/'+data.placeId)
+                .then(res => {
+                    console.log("res?" + JSON.stringify(res))
+                    navigate('/themeList' , {state : data.themeName}) //테마명 가져감
+                });
+        }
     }
 
     const addMyList = () => {

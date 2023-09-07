@@ -4,10 +4,12 @@ import com.raina.traduler.themeList.entity.ThemeListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FileRepository extends JpaRepository<FileEntity, String> {
 
     FileEntity findByOriginalFileName(String fileName);
-    List<FileEntity> findAllByThemeList(ThemeListEntity themeList);
-    List<FileEntity>  findByThemeList(ThemeListEntity themeList);
+
+    // FindBy FK --> findBy+ EntityName + _fk
+    List<FileEntity> findAllByThemeList_PlaceId(Long placeId);
 }

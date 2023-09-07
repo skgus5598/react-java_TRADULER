@@ -37,7 +37,7 @@ public class ThemeListEntity {
 
 
     @Builder.Default
-    @OneToMany(mappedBy = "themeList")
+    @OneToMany(mappedBy = "themeList", cascade = CascadeType.ALL)
     private List<FileEntity> files = new ArrayList<>();
 
     /* @Builder를 이용해서 생성한 객체는 필드 자료형의 기본 초기값으로 생성이 된다.
