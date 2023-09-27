@@ -37,10 +37,8 @@ public class FileHandler {
         //    String newFileName = System.nanoTime() + multipartFile.getOriginalFilename();
             //확장자 넣어주기
             String extension = StringUtils.getFilenameExtension(multipartFile.getOriginalFilename());
-            System.out.println("extension : " + extension);
 
             String newFileName = UUID.randomUUID().toString().replaceAll("-", "")+"."+extension;
-            System.out.println("newfilename :: " + newFileName);
 
             String originFileName =  + System.nanoTime() + multipartFile.getOriginalFilename().toLowerCase();
 
@@ -48,7 +46,6 @@ public class FileHandler {
 
             fileList.add(fileEntity);
 
-            System.out.println("filelist : " + fileList);
 
             //로컬 경로 저장
             String fileName = PATH + newFileName;
@@ -58,9 +55,7 @@ public class FileHandler {
     }
 
     public void readImages(String fileName, HttpServletResponse response, FileEntity entity) throws IOException {
-        System.out.println("filename :::" + fileName);
         response.addHeader("Content-disposition", "attachment; fileName="+fileName);
-        System.out.println("response header::" + response.getHeader("Content-disposition"));
         String path = "/Users/raina/Desktop/traduler_react/img_repo/";
         File file = new File(path+entity.getSavedFileName());
         FileInputStream fis = new FileInputStream(file);
