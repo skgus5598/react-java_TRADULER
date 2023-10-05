@@ -57,7 +57,7 @@ const LoginForm = () => {
         <>
             <Header/>
         <div className="login-form">
-            <h1>WELCOME BACK ! </h1><br/>
+            <h1>WELCOME! </h1><br/>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="id">Id</label>
