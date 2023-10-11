@@ -6,6 +6,12 @@ import com.raina.traduler.user.entity.UserEntity;
 import com.raina.traduler.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,9 +19,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public Boolean checkId(String inputId) {
@@ -30,10 +37,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserResponse registerUser(UserRequest request) {
+        request.setUserPwd(passwordEncoder.encode(request.getUserPwd()));
         UserEntity entity = repository.save(request.toEntity());
+        System.out.println("entity?????" + entity.getPassword());
         return new UserResponse(entity);
     }
 
+
+/*
     @Override
     public int login(UserRequest request) {
         Optional<UserEntity> userEntity =  repository.findByUserId(request.getUserId());
@@ -51,4 +62,6 @@ public class UserServiceImpl implements UserService{
             }
         }
     }
+    */
+
 }

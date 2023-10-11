@@ -27,7 +27,7 @@ const LoginForm = () => {
         expire : expireTime.toUTCString() // GMT
     }
 
-    const handleSubmit = (e) => {
+/*    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`id: ${loginId}, Password: ${password}`);
 
@@ -39,7 +39,7 @@ const LoginForm = () => {
         }).then( res => {
             console.log(res.data);
             if(res.data == 3){
-            //    localStorage.setItem("userCookie", JSON.stringify(res.data))
+                //    localStorage.setItem("userCookie", JSON.stringify(res.data))
                 localStorage.setItem("userCookie", JSON.stringify(obj))
 
                 navigate('/')
@@ -49,6 +49,23 @@ const LoginForm = () => {
             }else if(res.data == 2) {
                 alert("비밀번호를 다시 입력해주세요")
             }
+        })
+
+    };
+*/
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(`id: ${loginId}, Password: ${password}`);
+
+        axios.post('http://localhost:8899/user/login', {
+            username : loginId,
+            password : password
+        }, {
+            //headers : {"Content-Type" : "application/json"}
+            headers : {"Content-Type" : "application/x-www-form-urlencoded"} //spring-security
+        }).then( res => {
+            console.log(res.data);
+
         })
 
     };

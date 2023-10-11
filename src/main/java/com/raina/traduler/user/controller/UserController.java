@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,11 +31,18 @@ public class UserController {
         return new ResponseEntity(userService.registerUser(request), HttpStatus.OK);
     }
 
+/*
     @PostMapping("/login")
     public ResponseEntity<UserResponse> login(@RequestBody UserRequest request){
         log.info("toString : " + request.toString());
         return new ResponseEntity(userService.login(request), HttpStatus.OK);
     }
 
+*/
+    @PostMapping("/login")
+    public ResponseEntity<UserResponse> login(@AuthenticationPrincipal UserRequest request){
+        log.info("toString : " + request.toString());
+        return new ResponseEntity(request.toEntity(), HttpStatus.OK);
+    }
 
 }
