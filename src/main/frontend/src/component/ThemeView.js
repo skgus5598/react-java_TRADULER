@@ -96,14 +96,15 @@ function ThemeView(){
                         </button>
                     </div>
                     <br/><br/>
+                    <div style={{textAlign:'left', margin:'5%', fontFamily:'"Open Sans", sans-serif', fontStyle:'italic',fontSize:'1em' ,fontWeight:'600'}}>
                     {
                         data.contentMain.split("<br>").map((line) => {
                             return (
-                                <h3>
+                                <span>
                                     <input type="hidden" name="mainCategory" value="mainCategory"/>
                                     {line}
                                     <br/>
-                                </h3>
+                                </span>
                             )
                         })
                     }
@@ -120,11 +121,12 @@ function ThemeView(){
                                 </div>
 */}
                 </div>
+                </div>
 
                 {/*Google Map, marker*/}
                 <div style={{textAlign : "center"}}>
                     <Gmap lat={data.latitude} lng={data.longitude} />
-                    <label >주소 : {data.placeAddr}</label>
+                    <label >address : {data.placeAddr}</label>
                 </div>
 
                 <div className='flex'>

@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.158s</div>
+<div class="counter">0.202s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">contextLoads()</td>
-<td class="success">0.158s</td>
+<td class="success">0.202s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,14 +87,14 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>14:04:45.988 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [TradulerReactApplicationTests]: using SpringBootContextLoader
-14:04:45.996 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.raina.traduler.TradulerReactApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-14:04:45.997 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.raina.traduler.TradulerReactApplicationTests]: TradulerReactApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:04:46.024 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [TradulerReactApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-14:04:46.106 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/raina/Desktop/traduler_react/build/classes/java/main/com/raina/traduler/TradulerReactApplication.class]
-14:04:46.107 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.raina.traduler.TradulerReactApplication for test class com.raina.traduler.TradulerReactApplicationTests
-14:04:46.201 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [TradulerReactApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-14:04:46.202 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [TradulerReactApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>18:15:23.186 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Neither @ContextConfiguration nor @ContextHierarchy found for test class [TradulerReactApplicationTests]: using SpringBootContextLoader
+18:15:23.192 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader -- Could not detect default resource locations for test class [com.raina.traduler.TradulerReactApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+18:15:23.193 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.raina.traduler.TradulerReactApplicationTests]: TradulerReactApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:15:23.214 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using ContextCustomizers for test class [TradulerReactApplicationTests]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+18:15:23.297 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider -- Identified candidate component class: file [/Users/raina/Desktop/traduler_react/build/classes/java/main/com/raina/traduler/TradulerReactApplication.class]
+18:15:23.299 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.raina.traduler.TradulerReactApplication for test class com.raina.traduler.TradulerReactApplicationTests
+18:15:23.408 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Using TestExecutionListeners for test class [TradulerReactApplicationTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, WithSecurityContextTestExecutionListener, EventPublishingTestExecutionListener, ReactorContextTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+18:15:23.409 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener -- Before test class: class [TradulerReactApplicationTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -104,31 +104,142 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.5)
 
-2023-08-15T14:04:46.482+01:00  INFO 50447 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : Starting TradulerReactApplicationTests using Java 17.0.6 with PID 50447 (started by raina in /Users/raina/Desktop/traduler_react)
-2023-08-15T14:04:46.484+01:00  INFO 50447 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-08-15T14:04:47.097+01:00  INFO 50447 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-08-15T14:04:47.171+01:00  INFO 50447 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 4 JPA repository interfaces.
-2023-08-15T14:04:47.264+01:00  WARN 50447 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.raina.traduler]' package. Please check your configuration.
-2023-08-15T14:04:47.616+01:00  INFO 50447 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-08-15T14:04:47.660+01:00  INFO 50447 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-08-15T14:04:48.429+01:00  INFO 50447 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-08-15T14:04:48.774+01:00  INFO 50447 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@74eec640
-2023-08-15T14:04:48.775+01:00  INFO 50447 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-08-15T14:04:48.792+01:00  INFO 50447 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2023-08-15T14:04:48.794+01:00  WARN 50447 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL57Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2023-08-15T14:04:48.821+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@10bdfbcc) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@25b74370)
-2023-08-15T14:04:48.821+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@15e8c040) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@1f71e024)
-2023-08-15T14:04:48.821+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@60ed0b9d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7f5e6833)
-2023-08-15T14:04:48.821+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2c674d58) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3c07e830)
-2023-08-15T14:04:48.822+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@34beadce) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@382d549a)
-2023-08-15T14:04:48.822+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2eb6d34a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2d73e8c4)
-2023-08-15T14:04:48.822+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6ce2e079) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3e39e0fb)
-2023-08-15T14:04:48.822+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@260d48f5) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@148ab138)
-2023-08-15T14:04:48.822+01:00 DEBUG 50447 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6f106af8) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1edf71d9)
-2023-08-15T14:04:49.628+01:00  INFO 50447 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-08-15T14:04:49.638+01:00  INFO 50447 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-08-15T14:04:51.232+01:00  WARN 50447 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-08-15T14:04:51.667+01:00  INFO 50447 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : Started TradulerReactApplicationTests in 5.414 seconds (process running for 13.031)
+2023-11-18T18:15:23.696Z  INFO 37661 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : Starting TradulerReactApplicationTests using Java 17.0.6 with PID 37661 (started by raina in /Users/raina/Desktop/traduler_react)
+2023-11-18T18:15:23.698Z  INFO 37661 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-11-18T18:15:24.330Z  INFO 37661 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-18T18:15:24.393Z  INFO 37661 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 55 ms. Found 4 JPA repository interfaces.
+2023-11-18T18:15:24.490Z  WARN 37661 --- [    Test worker] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.raina.traduler]' package. Please check your configuration.
+2023-11-18T18:15:24.884Z  INFO 37661 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-18T18:15:24.925Z  INFO 37661 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-11-18T18:15:25.164Z  INFO 37661 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-18T18:15:25.504Z  INFO 37661 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a5c6b76
+2023-11-18T18:15:25.506Z  INFO 37661 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-18T18:15:25.522Z  INFO 37661 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-11-18T18:15:25.524Z  WARN 37661 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000026: MySQL57Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-11-18T18:15:25.548Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@100eeedc) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@56266bda)
+2023-11-18T18:15:25.548Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@18bb1b88) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@51b51641)
+2023-11-18T18:15:25.549Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@362a6aa5) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@53b7bf01)
+2023-11-18T18:15:25.549Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@139089a4) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6a6e9289)
+2023-11-18T18:15:25.549Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@ff4b223) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@61554b6b)
+2023-11-18T18:15:25.549Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@761f234c) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@687b0ddc)
+2023-11-18T18:15:25.550Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@42b4df5a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@9f1ca74)
+2023-11-18T18:15:25.550Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@67b8d45) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@365e65bb)
+2023-11-18T18:15:25.550Z DEBUG 37661 --- [    Test worker] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@52f43225) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@55d1f065)
+Hibernate: 
+    
+    alter table file_storage 
+       drop 
+       foreign key FK1ap1deagvdmthvxvm7g3ywhs1
+Hibernate: 
+    
+    alter table theme_list 
+       drop 
+       foreign key FKqmkumteupn1mpex9m5qtij2n2
+Hibernate: 
+    
+    drop table if exists file_storage
+Hibernate: 
+    
+    drop table if exists file_storage_seq
+Hibernate: 
+    
+    drop table if exists theme_info
+Hibernate: 
+    
+    drop table if exists theme_list
+Hibernate: 
+    
+    drop table if exists theme_list_seq
+Hibernate: 
+    
+    drop table if exists user
+Hibernate: 
+    
+    drop table if exists user_seq
+Hibernate: 
+    
+    create table file_storage (
+       id bigint not null,
+        crt_id varchar(255),
+        file_path varchar(255),
+        file_size bigint,
+        mod_dt datetime(6),
+        original_file_name varchar(255),
+        reg_dt datetime(6),
+        saved_file_name varchar(255),
+        place_id bigint,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table file_storage_seq (
+       next_val bigint
+    ) engine=InnoDB
+Hibernate: 
+    
+    insert into file_storage_seq values ( 1 )
+Hibernate: 
+    
+    create table theme_info (
+       theme_nm varchar(255) not null,
+        theme_intro varchar(255),
+        primary key (theme_nm)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table theme_list (
+       place_id bigint not null,
+        content_intro varchar(255),
+        content_main varchar(255),
+        place_latitude varchar(255),
+        place_longitude varchar(255),
+        place_addr varchar(255),
+        place_name varchar(255),
+        theme_name varchar(255),
+        primary key (place_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table theme_list_seq (
+       next_val bigint
+    ) engine=InnoDB
+Hibernate: 
+    
+    insert into theme_list_seq values ( 1 )
+Hibernate: 
+    
+    create table user (
+       user_no bigint not null,
+        user_email varchar(255),
+        user_id varchar(255),
+        user_pwd varchar(255),
+        primary key (user_no)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table user_seq (
+       next_val bigint
+    ) engine=InnoDB
+Hibernate: 
+    
+    insert into user_seq values ( 1 )
+Hibernate: 
+    
+    alter table file_storage 
+       add constraint FK1ap1deagvdmthvxvm7g3ywhs1 
+       foreign key (place_id) 
+       references theme_list (place_id)
+Hibernate: 
+    
+    alter table theme_list 
+       add constraint FKqmkumteupn1mpex9m5qtij2n2 
+       foreign key (theme_name) 
+       references theme_info (theme_nm)
+2023-11-18T18:15:26.677Z  INFO 37661 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-18T18:15:26.685Z  INFO 37661 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-18T18:15:27.393Z  WARN 37661 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-18T18:15:27.922Z  INFO 37661 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3cc2c4b8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11a29c0, org.springframework.security.web.context.SecurityContextHolderFilter@73483d4b, org.springframework.security.web.header.HeaderWriterFilter@682270ff, org.springframework.security.web.authentication.logout.LogoutFilter@14af57c3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@121c1a08, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67eabe02, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4197e859, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1fc4b8d6, org.springframework.security.web.access.ExceptionTranslationFilter@3eadfbbb, org.springframework.security.web.access.intercept.AuthorizationFilter@2fd409c1]
+2023-11-18T18:15:28.503Z  INFO 37661 --- [    Test worker] c.r.t.TradulerReactApplicationTests      : Started TradulerReactApplicationTests in 5.029 seconds (process running for 6.11)
 </pre>
 </span>
 </div>
@@ -140,7 +251,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.6.1</a> at 15 Aug 2023, 14:04:51</p>
+<a href="http://www.gradle.org">Gradle 7.6.1</a> at 18 Nov 2023, 18:15:28</p>
 </div>
 </div>
 </body>

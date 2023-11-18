@@ -37,8 +37,8 @@ function Main () {
                 <div className="inner">
                     <header>
                         <div className="travel_main_intro">
-                            <h2>여행 계획의 시작은 ‘테마 정하기’예요.<br/>
-                                자신의 취향에 맞는 테마부터 한번 골라볼까요 ?</h2><br/>
+                            <h2>To kick off your trip planning,<br/> simply pick a theme that fits your style.<br/>
+                            Let's get started!</h2>
                         </div>
                     </header>
                     <section className="tiles">
