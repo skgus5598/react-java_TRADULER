@@ -94,8 +94,8 @@ const MySchedule = () => {
                                 </div>
                             ))
                             : <div> <br/><br/>
-                                    트레줄러에서 원하는 테마를 선택하여 <br/>
-                                    나의리스트에 추가해주세요
+                                    Choose the theme and <br/>
+                                    add to my list!
                               </div>
                         }
                     </div>

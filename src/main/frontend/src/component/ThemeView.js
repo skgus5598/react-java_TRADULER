@@ -6,37 +6,12 @@ import Gmap from "./Gmap";
 import { useNavigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import ImageSlide from "./ImageSlide";
 
 function ThemeView(){
     const navigate = useNavigate();
     const location = useLocation();
-    const data = { ...location.state}
-
-    //이미지 불러오기
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    const handleNextSlide = () => {
-        console.log("currentslide :: " + currentSlide)
-        setCurrentSlide((currentSlide + 1) % data.files.length);
-    };
-
-    const handlePrevSlide = () => {
-        console.log("currentslide :: " + currentSlide)
-        setCurrentSlide((currentSlide - 1 + data.files.length) % data.files.length);
-    };
-
-    const filePreviewElements = data.files.map((file, index) => (
-        <div
-            className={`slide ${index === currentSlide ? 'active' : ''}`}
-            key={index}
-        >
-            {index === currentSlide && (
-                <>
-                    <img  src={`http://localhost:8899/readImages/${file}`}  />
-                </>
-            )}
-        </div>
-    ));
+    const data = { ...location.state};
 
     const deleteContent = () => {
         if(window.confirm("Are you sure you want to delete this Theme?")){
@@ -77,9 +52,9 @@ function ThemeView(){
         <div>
             <Header/>
             <div id="main">
-                <br/><a onClick={ () => { navigate(-1); }}>뒤로가기 </a>
+                <br/><a onClick={ () => { navigate(-1); }}>뒤로가기 </a><br/>
 
-                <button onClick={deleteContent}>게시물삭제  </button>&nbsp;&nbsp;&nbsp;
+                <button onClick={deleteContent}>DELETE  </button>&nbsp;&nbsp;&nbsp;
                 <button onClick={addMyList}>ADD TO MY LIST </button>
                 <br/><br/>
                 <div className="inner" style={{textAlign : "center"}}>
@@ -87,15 +62,9 @@ function ThemeView(){
                     <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentIntro}</h5>
 
                     <div>
-                        {filePreviewElements}
-                        <button className="prev-button" onClick={handlePrevSlide}>
-                            &#10094;
-                        </button>
-                        <button className="next-button" onClick={handleNextSlide}>
-                            &#10095;
-                        </button>
+                        <ImageSlide files={data.files} />
                     </div>
-                    <br/><br/>
+                    
                     <div style={{textAlign:'left', margin:'5%', fontFamily:'"Open Sans", sans-serif', fontStyle:'italic',fontSize:'1em' ,fontWeight:'600'}}>
                     {
                         data.contentMain.split("<br>").map((line) => {

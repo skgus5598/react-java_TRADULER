@@ -1,3 +1,4 @@
+
 package com.raina.traduler.auth;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfig implements WebMvcConfigurer {
 
 
+   /*
     private final AuthSucessHandler authSucessHandler;
     private final AuthFailureHandler authFailureHandler;
 
@@ -33,7 +35,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     public UserDetailsService userDetailsService(){
         return new UserDetailService();
     }
-
+    */
     @Bean
     public BCryptPasswordEncoder encodePassword() {  // 회원가입 시 비밀번호 암호화에 사용할 Encoder 빈 등록
         return new BCryptPasswordEncoder();
@@ -45,14 +47,14 @@ public class SecurityConfig implements WebMvcConfigurer {
          http
                  .csrf().disable()
                  .authorizeHttpRequests()
-                 .requestMatchers("/css/**","/images/**","/js/**","/user/**","/**").permitAll()
+                 .requestMatchers("/css/**","/images/**","/js/**","/user/**","/**").permitAll();
                 // .anyRequest().authenticated()
-                 .and()
-                 .formLogin()
-                 .loginPage("/login")
-                 .loginProcessingUrl("/user/login") //form action
-                 .successHandler(authSucessHandler)
-                 .failureHandler(authFailureHandler);
+              //   .and()
+              //   .formLogin()
+              //   .loginPage("/login")
+              //   .loginProcessingUrl("/user/login") //form action
+              //   .successHandler(authSucessHandler)
+              //   .failureHandler(authFailureHandler);
         return http.build();
     }
 
@@ -63,7 +65,10 @@ public class SecurityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**") // cors를 적용할 spring서버의 url 패턴.
                 .allowedOrigins("*") // cors를 허용할 도메인. 제한을 모두 해제하려면 "**"
-                .allowedMethods("GET","POST","PUT"); // cors를 허용할 method
+                //.allowedMethods("GET","POST","PUT") // cors를 허용할 method
+                .allowedMethods("*")
+                .allowedHeaders("*");
+                //.allowCredentials(true);
     }
 }
 

@@ -6,9 +6,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -16,7 +19,7 @@ import java.util.Collection;
 @Getter
 @Builder
 @Table(name = "user")
-public class UserEntity implements UserDetails {
+public class UserEntity {//implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +32,14 @@ public class UserEntity implements UserDetails {
     private String userPwd;
 
 
+
+/*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+        setAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
+        //return null;
+        return setAuths;
     }
 
     @Override
@@ -63,4 +71,7 @@ public class UserEntity implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+
+ */
 }

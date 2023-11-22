@@ -37,8 +37,8 @@ function Main () {
                 <div className="inner">
                     <header>
                         <div className="travel_main_intro">
-                            <h2>To kick off your trip planning,<br/> simply pick a theme that fits your style.<br/>
-                            Let's get started!</h2>
+                            <span>To kick off your trip planning,<br/> simply pick a theme that fits your style.<br/>
+                            Let's get started!</span>
                         </div>
                     </header>
                     <section className="tiles">

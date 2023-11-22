@@ -22,6 +22,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
+
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
@@ -39,12 +40,12 @@ public class UserServiceImpl implements UserService {
     public UserResponse registerUser(UserRequest request) {
         request.setUserPwd(passwordEncoder.encode(request.getUserPwd()));
         UserEntity entity = repository.save(request.toEntity());
-        System.out.println("entity?????" + entity.getPassword());
+        System.out.println("entity?????" + entity.getUserPwd());
         return new UserResponse(entity);
     }
 
 
-/*
+
     @Override
     public int login(UserRequest request) {
         Optional<UserEntity> userEntity =  repository.findByUserId(request.getUserId());
@@ -54,7 +55,8 @@ public class UserServiceImpl implements UserService {
             return 1;
         }else{
             // 비밀번호 틀렸을 때
-            if(! userEntity.get().getUserPwd().equals(request.getUserPwd())){
+            if(passwordEncoder.matches(userEntity.get().getUserPwd(), request.getUserPwd() )){
+          //  if(! userEntity.get().getUserPwd().equals(request.getUserPwd())){
                   return 2;
             }else{
                 // 로그인 성공
@@ -62,6 +64,6 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
-    */
+
 
 }

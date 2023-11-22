@@ -8,6 +8,6 @@ public interface UserService {
 
     UserResponse registerUser(UserRequest request);
 
- //   int login(UserRequest request);
+    int login(UserRequest request);
 
 }

@@ -3,7 +3,7 @@ import {GoogleMap, MarkerF, useJsApiLoader} from '@react-google-maps/api';
 
 const containerStyle = {
     // width: '500px',
-    height: '400px',
+    height: '500px',
     marginLeft: '10%',
     marginRight: '10%'
 };

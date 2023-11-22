@@ -1,4 +1,6 @@
+/*
 package com.raina.traduler.auth;
+
 
 import com.raina.traduler.user.entity.UserEntity;
 import com.raina.traduler.user.repository.UserRepository;
@@ -6,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,10 +26,11 @@ public class UserDetailService implements UserDetailsService {
         log.info("*****userserviceimple loaduserbyusername : " + username);
         UserEntity user = repository.findByUserId(username)
                 .orElseThrow(() -> new UsernameNotFoundException("couldn't find user " + username));
-        log.info("user? " + user.getUsername() +  "/ " + user.getPassword());
+      //  log.info("user? " + user.getUsername() +  "/ " + user.getPassword());
+       // return new UserEntity(user, buildAdminAuthority());
         ExamUser examUser = new ExamUser(user, buildAdminAuthority());
         log.info("examuser ??" + examUser.id +"/" + examUser.password +"/" + examUser.getAuthorities());
-        return examUser;
+        return examUser; // User를 extends하는 ExamUser를 리턴해야 successHandler로 넘어감.why? 근데 또 얘는 null임
     }
 
     private Set<GrantedAuthority> buildAdminAuthority(){
@@ -37,3 +41,4 @@ public class UserDetailService implements UserDetailsService {
     }
 
 }
+ */

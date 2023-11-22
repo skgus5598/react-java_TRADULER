@@ -1,4 +1,6 @@
+/*
 package com.raina.traduler.auth;
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,3 +36,4 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         super.onAuthenticationFailure(request, response, exception);
     }
 }
+ */

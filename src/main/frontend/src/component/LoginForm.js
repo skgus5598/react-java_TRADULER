@@ -27,7 +27,7 @@ const LoginForm = () => {
         expire : expireTime.toUTCString() // GMT
     }
 
-/*    const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`id: ${loginId}, Password: ${password}`);
 
@@ -52,7 +52,8 @@ const LoginForm = () => {
         })
 
     };
-*/
+
+/* >> spring security test
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(`id: ${loginId}, Password: ${password}`);
@@ -64,12 +65,12 @@ const LoginForm = () => {
             //headers : {"Content-Type" : "application/json"}
             headers : {"Content-Type" : "application/x-www-form-urlencoded"} //spring-security
         }).then( res => {
-            console.log(res.data);
+            console.log("data : " + res.data);
 
-        })
+        }).catch((e)  => console.log("e" + e))
 
     };
-
+*/
     return (
         <>
             <Header/>

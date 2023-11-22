@@ -1,3 +1,4 @@
+/*
 package com.raina.traduler.auth;
 
 import com.raina.traduler.user.entity.UserEntity;
@@ -5,10 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-
-import java.util.Collection;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 
 @Getter
 @Setter
@@ -22,3 +19,4 @@ public class ExamUser extends User {
         this.password = user.getPassword();
     }
 }
+*/

@@ -45,3 +45,12 @@
   padding: 1em;
   border-radius: 4px;
 }
+
+
+.carousel .thumb{
+  height: 50px;
+}
+.thumbs-wrapper{
+  margin: 20px;
+  box-sizing: content-box;
+}
