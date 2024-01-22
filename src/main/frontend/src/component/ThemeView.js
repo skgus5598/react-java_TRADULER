@@ -13,6 +13,8 @@ function ThemeView(){
     const location = useLocation();
     const data = { ...location.state};
 
+    console.log("data :" + data.contentMain)
+
     const deleteContent = () => {
         if(window.confirm("Are you sure you want to delete this Theme?")){
             axios.delete('http://localhost:8899/deleteContent/'+data.placeId)
@@ -44,20 +46,21 @@ function ThemeView(){
         myList = Array.from(myList);
         localStorage.setItem('watched', JSON.stringify(myList))
 
-        alert("리스트에 추가!")
+        alert("Added to my Tradule List!")
     }
 
 
     return(
         <div>
             <Header/>
-            <div id="main">
+            <div id="wrapper">
+
                 <br/><a onClick={ () => { navigate(-1); }}>뒤로가기 </a><br/>
 
-                <button onClick={deleteContent}>DELETE  </button>&nbsp;&nbsp;&nbsp;
-                <button onClick={addMyList}>ADD TO MY LIST </button>
+                <button onClick={deleteContent}>DELETE  </button>
                 <br/><br/>
-                <div className="inner" style={{textAlign : "center"}}>
+                <div style={{textAlign : "center"}}>
+                    <button className='addBtn' onClick={addMyList}>ADD TO MY LIST❤️ </button><br/><br/>
                     <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>
                     <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentIntro}</h5>
 
@@ -77,19 +80,7 @@ function ThemeView(){
                             )
                         })
                     }
-                    {
-//                                    <h3><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentMain}</h3>
-                    }
-
-                    {/*
-                                <div>
-                                     이미지 파일 리스트를 반복문을 이용하여 이미지 요소에 대한 JSX를 생성합니다.
-                                    {imageList.map((image, index) => (
-                                        <img key={index} src={`data:image/jpeg;base64,${image.data}`} alt={image.name} />
-                                    ))}
-                                </div>
-*/}
-                </div>
+                    </div>
                 </div>
 
                 {/*Google Map, marker*/}

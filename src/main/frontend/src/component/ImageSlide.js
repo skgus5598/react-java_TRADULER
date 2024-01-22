@@ -10,7 +10,7 @@ const ImageSlide = (props) => {
                         props.files.map( (file, idx) => (  
                             <div className='imgDiv' key={idx}>
                                 <img
-                                    style={{width: "700px", height: '550px'}}
+                                    style={{width: "750px", height: '550px'}}
                                     src={`http://localhost:8899/readImages/${file}`}  />
                             </div>
                             )

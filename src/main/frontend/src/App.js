@@ -20,6 +20,7 @@ function App() {
   console.log("App.js) userCookie : " + localStorage.getItem("userCookie"))
   //localStorage.removeItem("userCookie")
   useEffect( () => {
+
     if(obj != null){
         if(today.toUTCString() > obj.expire ){
             localStorage.removeItem("userCookie")

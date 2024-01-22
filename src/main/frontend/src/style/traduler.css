@@ -54,3 +54,16 @@
   margin: 20px;
   box-sizing: content-box;
 }
+
+/* add to my list button*/
+.addBtn{
+  font-size: x-small;
+}
+
+#replyList img{
+  width:150px; 
+  height:100px
+}
+#replyList span{
+  cursor: pointer;
+}

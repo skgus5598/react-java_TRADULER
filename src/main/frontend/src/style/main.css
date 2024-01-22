@@ -3354,3 +3354,8 @@
 			}
 
 		}
+
+		/*내가 추가한거*/
+		#menu li a, #header li a {
+			cursor: pointer;
+		}
