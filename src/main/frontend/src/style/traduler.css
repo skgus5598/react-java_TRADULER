@@ -56,14 +56,21 @@
 }
 
 /* add to my list button*/
-.addBtn{
-  font-size: x-small;
-}
+
 
 #replyList img{
   width:150px; 
   height:100px
 }
-#replyList span{
+
+#replyList span:hover{
   cursor: pointer;
+  font-size: large;
+  font-weight: 600;
+  color:coral
+}
+
+.reviewFilterBtn{
+  border-radius: 50px;
+  letter-spacing: normal;
 }

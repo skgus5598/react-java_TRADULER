@@ -3,6 +3,7 @@ import './../style/font-awesome.min.css'
 import './../style/traduler.css';
 import Header from "./Header";
 import Gmap from "./Gmap";
+import ReviewList from './ReviewList';
 import { useNavigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -67,8 +68,9 @@ function ThemeView(){
                     <div>
                         <ImageSlide files={data.files} />
                     </div>
-                    
-                    <div style={{textAlign:'left', margin:'5%', fontFamily:'"Open Sans", sans-serif', fontStyle:'italic',fontSize:'1em' ,fontWeight:'600'}}>
+
+                    <div style={{display:"flex"}}>
+                    <div style={{textAlign:'left', width:"50%", marginLeft:'5%', fontFamily:'"Open Sans", sans-serif', fontStyle:'italic',fontSize:'1em' ,fontWeight:'600'}}>
                     {
                         data.contentMain.split("<br>").map((line) => {
                             return (
@@ -81,33 +83,18 @@ function ThemeView(){
                         })
                     }
                     </div>
-                </div>
-
-                {/*Google Map, marker*/}
-                <div style={{textAlign : "center"}}>
-                    <Gmap lat={data.latitude} lng={data.longitude} />
-                    <label >address : {data.placeAddr}</label>
-                </div>
-
-                <div className='flex'>
-                    <div className="flexA" id="map" style={{width:"50%", height:"520px"}}></div>
-
-                    <div className="flexB">
-                        <div className="flexBa">
-                            <strong>주변 맛집을 추천해주세요</strong>
-                        </div>
-                        <div>
-                            <div id="reply"></div>
-                        </div>
+                    {/*Google Map, marker*/}
+                    <div style={{textAlign : "center", width:"50%"}}>
+                        <Gmap lat={data.latitude} lng={data.longitude} />
+                        <label >address : {data.placeAddr}</label>
+                    </div>
                     </div>
                 </div>
 
-                {/*  <div style={{display: "flex"}}>
-                            <label style={{width: "50%"}}>주소 : {data.placeAddr}</label>
-                            <div style={{width: "50%"}}>
-                                <Gmap />
-                            </div>
-                        </div>*/}
+                
+
+            <ReviewList />
+
             </div>
         </div>
     )
