@@ -65,16 +65,17 @@ function ThemeView(){
                     <h1><input type="hidden" name="placeName" value="placeName"/>{data.placeName}</h1>
                     <h5><input type="hidden" name="mainCategory" value="mainCategory"/>{data.contentIntro}</h5>
 
-                    <div>
+                    <div className='mainImgView' style={{display:"flex"}}>
                         <ImageSlide files={data.files} />
+                        <div className='nextoImg'>asdf</div>
                     </div>
 
                     <div style={{display:"flex"}}>
                     <div style={{textAlign:'left', width:"50%", marginLeft:'5%', fontFamily:'"Open Sans", sans-serif', fontStyle:'italic',fontSize:'1em' ,fontWeight:'600'}}>
                     {
-                        data.contentMain.split("<br>").map((line) => {
+                        data.contentMain.split("<br>").map((line, i) => {
                             return (
-                                <span>
+                                <span key={i}>
                                     <input type="hidden" name="mainCategory" value="mainCategory"/>
                                     {line}
                                     <br/>

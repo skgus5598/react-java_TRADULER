@@ -96,7 +96,11 @@ function AddPlace(){
                         </div>
 
                             <p><label><br/>1. 이미지 첨부</label>
-                                <input type="file" id="file"  onChange={handleFileChange} multiple/>
+                            <input type="file" 
+                                    id="file"
+                                    accept="image/jpg,image/png,image/jpeg,image/gif"  
+                                    onChange={handleFileChange} 
+                                    multiple/>
                                 <div className="slideshow-container">
                                     {filePreviewElements}
                                     <button className="prev-button" onClick={handlePrevSlide}>

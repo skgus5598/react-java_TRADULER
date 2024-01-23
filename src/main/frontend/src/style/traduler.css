@@ -63,7 +63,7 @@
   height:100px
 }
 
-#replyList span:hover{
+#replyList:hover{
   cursor: pointer;
   font-size: large;
   font-weight: 600;
@@ -73,4 +73,31 @@
 .reviewFilterBtn{
   border-radius: 50px;
   letter-spacing: normal;
+}
+
+.slide img{
+  width: 70%;
+  height: 400px;
+}
+.writeReview img{
+  width: 200px;
+  height: 200px;
+}
+.writeReview h2{
+  text-align: left;
+  letter-spacing: normal;
+  text-transform :none
+}
+.writeReview textarea{
+  height:200px;
+  padding:2%;
+  border:solid
+}
+.nextoImg{
+  width: 30%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+}
+#imgHdiv{
+  width: 70%;
 }

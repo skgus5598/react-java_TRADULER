@@ -93,10 +93,10 @@ function Header() {
                                 <br/><h2>My Tradule List🏖</h2>
                                 {
                                     items.length > 0 
-                                    ? items.map((item) => {
+                                    ? items.map((item, i) => {
                                         return(
-                                        <div id="replyList">
-                                            <span onClick={()=>{ removeMyList(item.placeId)}}>{item.placeName} &nbsp;💔</span><br/>
+                                        <div id="replyList" key={i} onClick={()=>{ removeMyList(item.placeId)}}>
+                                            <span >{item.placeName} &nbsp;💔</span><br/>
                                             <img src={`http://localhost:8899/readImages/${item.image}`} /><br/>
                                         </div>
                                         )

@@ -20,7 +20,7 @@ const LoginForm = () => {
 
     //Login Cookie create
     const expireTime = new Date();
-    expireTime.setMinutes(expireTime.getMinutes()+1) // 1mins
+    expireTime.setMinutes(expireTime.getMinutes()+30) // 30mins
 
     const obj = {
         value : loginId,
