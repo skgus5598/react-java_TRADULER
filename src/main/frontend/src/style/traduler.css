@@ -76,7 +76,7 @@
 }
 
 .slide img{
-  width: 70%;
+  width: 60%;
   height: 400px;
 }
 .writeReview img{
@@ -94,10 +94,30 @@
   border:solid
 }
 .nextoImg{
-  width: 30%;
+  width: 40%;
   margin-right: 5%;
   margin-bottom: 5%;
 }
+
 #imgHdiv{
-  width: 70%;
+  width: 60%;
+}
+
+.codeImg{
+  display: flex;
+  justify-content: center;
+}
+.codeImg img{
+  cursor: pointer;
+  margin-right: 5%;
+}
+.kakaoMapDiv{
+  width: 60%;
+  padding-left: 5%;
+  text-align: center;
+}
+.mapSection{
+  display: flex;
+  padding-left: 5%;
+  padding-right: 5%;
 }
