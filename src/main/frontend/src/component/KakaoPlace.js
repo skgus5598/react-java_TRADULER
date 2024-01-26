@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import  chicken  from '../assets/img/chicken.png';
 import KakaoMap from "./KakaoMap";
 
@@ -16,13 +16,19 @@ function KakaoPlace(props){
         y = latitude
         category_group_code = PK6(carpark), FD6(restaurant), CE7(cafe)
     */
+    
+    useEffect(() => {
+        getPlace('FD6');
+    },[])
+
     const getPlace = (code) => {
+        markerArr = [];
+
         const apiKey = process.env.REACT_APP_KAKAO_KEY
    
         axios.get(`https://dapi.kakao.com/v2/local/search/category.json?category_group_code=${code}&x=${props.lng}&y=${props.lat}&radius=1000&size=5`, {
             headers : {"Authorization" : "KakaoAK "+ apiKey}
         }).then( (res) => {
-             console.log("res.data ::" + JSON.stringify(res.data.documents));
              if(code === 'PK6'){
                 setObj(res.data.documents)
              }else if(code === 'FD6'){
@@ -37,12 +43,10 @@ function KakaoPlace(props){
         console.log("returnplace obj ;" + JSON.stringify(e))
         let markerData = {
             "place" : e.place_name,
-            "lat" : e.x,
-            "lng" : e.y
+            "lng" : e.x,
+            "lat" : e.y
         }
-        console.log("markerData : " + JSON.stringify(markerData));
         markerArr.push(markerData);
-        console.log("markerArr : " + JSON.stringify(markerArr));
 
         return(
            <div key={i} style={{textAlign:"left"}}>
@@ -66,7 +70,12 @@ function KakaoPlace(props){
             <div className='mapSection' style={{ display: "flex", paddingTop:"5%" }}>
                 <div> {returnPlace}</div>
                 <div className='kakaoMapDiv'>
-                    <KakaoMap lat={props.lat} lng={props.lng} markers={markerArr} />
+                    {
+                        markerArr.length <= 0 
+                        ? <>Loading ...</>
+                        : <KakaoMap lat={props.lat} lng={props.lng} markers={markerArr} />
+                    }
+                    
                     <label >address : {props.addr}</label>
                 </div>
  
