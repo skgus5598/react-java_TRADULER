@@ -1,43 +1,38 @@
 import { useEffect, useState } from "react";
-import restaurant  from '../assets/img/restaurant.png';
+import restaurant  from '../assets/img/res_marker.png';
+import parking  from '../assets/img/parking_marker.png';
+import cafe  from '../assets/img/cafe_marker.png';
 
 const { kakao } = window;
 
 const KakaoMap = (props) => {
-    console.log("props: " +props.lat + " / " +  props.lng  + " / " + JSON.stringify(props.markers))
     
-    let [menu, setMenu] = useState(props.markers)
-    
-    useEffect(()=>{
-        mainMarker();
-        menuMarkers();
-    },[menu]);
-
-    const mainMarker = () => {
-        const container = document.getElementById('map');
-        const options = { 
-            center: new kakao.maps.LatLng(props.lat, props.lng),
-            level : 5
-        };
-        const map = new kakao.maps.Map(container, options);
-        const markerPosition = options.center;
-        let marker = new kakao.maps.Marker({
-            map : map,
-            position: markerPosition
-        });
         
-        //marker.setMap(map);
-    }
+    useEffect(()=>{
+        menuMarkers();
+    },[props.markers]);
 
     const menuMarkers = () => {
-        console.log("menumarkers : " + JSON.stringify(props.markers));
-        let infowindow = new kakao.maps.InfoWindow({zIndex:1});
+       // console.log("select latlng :  " +  JSON.stringify(props.markers) );
+        console.log("menu ? : " + props.place)
 
         let menuMarkersOptions = {
-            imageSrc : restaurant,
+            imageSrc : '',
             imageSize : new kakao.maps.Size(40, 40),
             imageOption : {offset: new kakao.maps.Point(27, 69)}
         }
+
+        if(props.place === 'FD6'){ //restaurant
+            menuMarkersOptions.imageSrc = restaurant;
+        }else if(props.place ==='CE7'){ // cafe
+            menuMarkersOptions.imageSrc = cafe
+        }else{ //'PK6'  parking
+            menuMarkersOptions.imageSrc = parking
+        }
+
+        //layout modal
+        let infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
         let markerImage = new kakao.maps.MarkerImage(
             menuMarkersOptions.imageSrc,
             menuMarkersOptions.imageSize,
@@ -63,6 +58,12 @@ const KakaoMap = (props) => {
                 infowindow.setContent('<div style="padding:5px;font-size:12px;">' + e.place + '</div>');
                 infowindow.open(map, marker);
             });
+        });
+
+        //Main Place Marker
+        const main_marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(props.lat, props.lng)
         });
     }
    

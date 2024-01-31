@@ -1,14 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import  chicken  from '../assets/img/chicken.png';
+import  cafe  from '../assets/img/cafe_menu.png';
+import  parking  from '../assets/img/parking_menu.png';
+import  restaurant  from '../assets/img/res_menu.png';
+
 import KakaoMap from "./KakaoMap";
 
 function KakaoPlace(props){
     let [obj, setObj] = useState([]);
     
-    let [markers, setMarkers] = useState([]);
-
     let markerArr = [];
+    let selectPlace = 'FD6';
 
     /* 
         **** kakaoAPI *****
@@ -22,6 +24,7 @@ function KakaoPlace(props){
     },[])
 
     const getPlace = (code) => {
+        selectPlace = code;
         markerArr = [];
 
         const apiKey = process.env.REACT_APP_KAKAO_KEY
@@ -29,24 +32,18 @@ function KakaoPlace(props){
         axios.get(`https://dapi.kakao.com/v2/local/search/category.json?category_group_code=${code}&x=${props.lng}&y=${props.lat}&radius=1000&size=5`, {
             headers : {"Authorization" : "KakaoAK "+ apiKey}
         }).then( (res) => {
-             if(code === 'PK6'){
-                setObj(res.data.documents)
-             }else if(code === 'FD6'){
-                setObj(res.data.documents)
-             }else{
-                setObj(res.data.documents);
-             }
-        })
+            setObj(res.data.documents)
+       })
     }
 
     const returnPlace = obj.map((e, i) => {
-        console.log("returnplace obj ;" + JSON.stringify(e))
+       // console.log("returnplace obj ;" + JSON.stringify(e))
         let markerData = {
             "place" : e.place_name,
             "lng" : e.x,
             "lat" : e.y
         }
-        markerArr.push(markerData);
+        markerArr.push(markerData);        
 
         return(
            <div key={i} style={{textAlign:"left"}}>
@@ -55,7 +52,8 @@ function KakaoPlace(props){
               <span>address name : {e.address_name} || <b>{e.distance}m </b></span><br/>
               <span>phone : {e.phone}</span><br/>
               <hr style={{margin:"0.5em"}}/>
-            </div>
+           </div>
+           
         )
  })
 
@@ -63,9 +61,9 @@ function KakaoPlace(props){
         <div>
             
             <div className="codeImg">
-                <img src={chicken} onClick={() => {getPlace('FD6')}} />
-                <img src={chicken} onClick={() => {getPlace('CE7')}} />
-                <img src={chicken} onClick={() => {getPlace('PK6')}} />
+                <img src={restaurant} onClick={() => { getPlace('FD6')}} />
+                <img src={cafe} onClick={() => { getPlace('CE7')}} />
+                <img src={parking} onClick={() => {  getPlace('PK6')}} />
             </div>
             <div className='mapSection' style={{ display: "flex", paddingTop:"5%" }}>
                 <div> {returnPlace}</div>
@@ -73,7 +71,7 @@ function KakaoPlace(props){
                     {
                         markerArr.length <= 0 
                         ? <>Loading ...</>
-                        : <KakaoMap lat={props.lat} lng={props.lng} markers={markerArr} />
+                        : <KakaoMap lat={props.lat} lng={props.lng} markers={markerArr} place={obj[0].category_group_code} />
                     }
                     
                     <label >address : {props.addr}</label>

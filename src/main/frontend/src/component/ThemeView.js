@@ -17,7 +17,7 @@ function ThemeView() {
     const data = { ...location.state };
 
 
-    console.log("data :" + data.contentMain)
+    //console.log("data :" + data.contentMain)
 
     const deleteContent = () => {
         if (window.confirm("Are you sure you want to delete this Theme?")) {

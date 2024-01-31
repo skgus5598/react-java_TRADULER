@@ -110,6 +110,7 @@
 .codeImg img{
   cursor: pointer;
   margin-right: 5%;
+  width: 60px;
 }
 .kakaoMapDiv{
   width: 60%;
