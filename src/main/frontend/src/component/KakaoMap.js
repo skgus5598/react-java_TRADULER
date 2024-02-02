@@ -14,7 +14,6 @@ const KakaoMap = (props) => {
 
     const menuMarkers = () => {
        // console.log("select latlng :  " +  JSON.stringify(props.markers) );
-        console.log("menu ? : " + props.place)
 
         let menuMarkersOptions = {
             imageSrc : '',
