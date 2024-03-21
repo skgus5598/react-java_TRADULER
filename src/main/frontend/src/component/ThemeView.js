@@ -81,7 +81,7 @@ function ThemeView() {
                     <h5><input type="hidden" name="mainCategory" value="mainCategory" />{data.contentIntro}</h5>
 
                     <div className='mainImgView' style={{ display: "flex" }}>
-                        <ImageSlide files={data.files} />
+                        <ImageSlide files={data.files} path={"themeView"} />
                         <div className='nextoImg'>
                             <div style={{ textAlign: 'left', fontWeight: '600' }}>
                                 {

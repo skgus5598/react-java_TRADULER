@@ -1,17 +1,19 @@
 package com.raina.traduler.review.entity;
 
+import com.raina.traduler.fileStorage.FileEntity;
 import com.raina.traduler.themeList.entity.ThemeListEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.ibatis.annotations.One;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,7 +35,9 @@ public class ReviewEntity {
 
     private LocalDateTime regDate;
 
-
-
+    //file_storage에 foreign key => placeId
+    @Builder.Default
+    @OneToMany(mappedBy = "reviewId", cascade = CascadeType.ALL)
+    private List<FileEntity> files = new ArrayList<>();
 
 }

@@ -41,17 +41,21 @@ public class FileEntity {
 
     private String crtId;
 
+    private int reviewId;
+
     // FK
     @ManyToOne
     @JoinColumn(name = "placeId")
     private ThemeListEntity themeList; //여기서 theme_nm이랑 place_id가져와보기
 
-    public FileEntity(String originFileName, String path, long size, String newFileName) {
+    public FileEntity(String originFileName, String path, long size, String newFileName, String createId, int reviewId) {
         this.originalFileName = originFileName;
         this.filePath = path;
         this.fileSize = size;
         this.savedFileName = newFileName;
         this.regDt = LocalDateTime.now();
+        this.crtId = createId;
+        this.reviewId = reviewId;
     }
 
 

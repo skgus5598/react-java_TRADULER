@@ -26,6 +26,7 @@ function ThemeList () {
             })
                 .then( (res) => {
                     setData(res.data);
+                    console.log("themelist data : " + JSON.stringify(res.data))
                 })
     }, [])
 
@@ -57,9 +58,9 @@ function ThemeList () {
                                 data.map ( ( e , i) => {
                                     return (
 
-                                    <article style={{width:'250px', height:'250px'}}>
+                                    <article style={{width:'250px', height:'250px'}} key={i}>
 										<span className="image">
-											 <img style={{ width:"250px",  height:"250px"}}  src={`http://localhost:8899/readImages/${e.files[0]}`}  />
+											 <img style={{ width:"250px",  height:"250px"}}  src={`http://localhost:8899/readImages/themeView/${e.files[0]}`}  />
 										</span>
                                         {/*<a href="${contextPath }/main/themeView?placeName=${list.placeName}">*/}
                                         <a href="" onClick={ () =>{navigate('/themeView' , {state : data[i] })}} >

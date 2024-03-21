@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const ReviewList = (props) => { // props : placeId
 
@@ -14,6 +15,8 @@ const ReviewList = (props) => { // props : placeId
     //form
     const [content, setContent] = useState('');
     const [placeId, setPlaceId] = useState(props.placeId);
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         const ifUser = localStorage.getItem("userCookie");
@@ -58,6 +61,7 @@ const ReviewList = (props) => { // props : placeId
         e.preventDefault();
         if(user.value == '' || user.value == null || user.value == undefined){
             alert(" Please Login first");
+            navigate('/login');
             return false;
         }else{
             axios.post('http://localhost:8899/addReview', {
@@ -134,7 +138,19 @@ const ReviewList = (props) => { // props : placeId
                             <div key={i}>
                                 <span><b>{e.userId}</b> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ &nbsp; |&nbsp; {e.regDate}</span><br/>
                                 <span>{e.content}</span><br/>
-                                <div>{e.files}</div>
+                                <div style={{display:"flex"}}>
+                               {
+                                e.files[0] != undefined
+                                ? e.files.map((file, i) => {
+                                    return(
+                                        <img key={i} style={{width: "200px", height: '200px'}}
+                                         src={`http://localhost:8899/readImages/review/${file}`}   />
+                                    )
+                                })
+                                : <></>
+                               }
+                               </div>
+                                
                                 <hr/>
                             </div>
                         )

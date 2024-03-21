@@ -9,9 +9,16 @@ const ImageSlide = (props) => {
                     {
                         props.files.map( (file, idx) => (  
                             <div className='imgDiv' key={idx}>
-                                <img
-                                    style={{width: "750px", height: '550px', borderRadius:"10px"}}
-                                    src={`http://localhost:8899/readImages/${file}`}  />
+                                {
+                                    props.path == "themeView" //vs Review
+                                    ? <img
+                                        style={{width: "750px", height: '550px', borderRadius:"10px"}}
+                                        src={`http://localhost:8899/readImages/themeView/${file}`}  />
+                                    : <img
+                                        style={{width: "350px", height: '350px', borderRadius:"10px"}}
+                                        src={`http://localhost:8899/readImages/review/${file}`}  />
+                                }
+                                
                             </div>
                             )
                         )

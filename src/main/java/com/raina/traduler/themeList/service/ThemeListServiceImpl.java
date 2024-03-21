@@ -27,17 +27,18 @@ public class ThemeListServiceImpl implements ThemeListService{
 
     @Override
     public List<ThemeListResponse> getThemeList(ThemeListRequest requestDto) {
-        List<ThemeListEntity> entityList = themeRepo.findAllByTheme(requestDto.getTheme());
+        List<ThemeListResponse> entityList = themeRepo.findAllByThemeQuery(requestDto.getTheme().getThemeName());
         List<ThemeListResponse> responseList = new ArrayList<>();
-        entityList.forEach( e -> {
-            responseList.add(new ThemeListResponse(e));
-        });
+
+//        entityList.forEach( e -> {
+//            responseList.add(new ThemeListResponse(e));
+//        });
 
         //React.js에선 취약점을 완전히 차단하기 위해 무조건 텍스트 형태로만 렌더링하도록 설정되어 있다고 함
         //불러올 때 React에서 \n처리 안해줌. 여기서 replace 할 필요 없다는 말
 
 
-       return responseList;
+       return entityList;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ThemeListServiceImpl implements ThemeListService{
         requestDto.setContentMain(contentModi);
 
         ThemeListEntity themeEntity = themeRepo.save(requestDto.toThemeListEntity()) ;
-        List<FileEntity> fileList = fileHandler.saveFile(requestDto.getFiles());
+        List<FileEntity> fileList = fileHandler.saveFile(requestDto.getFiles(), "admin", 0);
         for(FileEntity file : fileList){
             themeEntity.addFile(file);
             fileRepo.save(file); // DB에 파일 이름 바꿔서 넣어줄 필요 있음. 계속 중복으로 들어가서 update쳐짐 
@@ -68,7 +69,7 @@ public class ThemeListServiceImpl implements ThemeListService{
         List<FileEntity> fileEntities = fileRepo.findAllByThemeList_PlaceId(placeId);
 
         // delete files from local repository
-        fileHandler.deleteImages(fileEntities);
+        fileHandler.deleteImages(fileEntities, "admin");
 
         themeRepo.deleteById(placeId);
 

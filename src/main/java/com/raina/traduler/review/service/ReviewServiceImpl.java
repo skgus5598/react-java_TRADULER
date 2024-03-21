@@ -1,5 +1,6 @@
 package com.raina.traduler.review.service;
 
+import com.raina.traduler.fileStorage.FileEntity;
 import com.raina.traduler.fileStorage.FileHandler;
 import com.raina.traduler.fileStorage.FileRepository;
 import com.raina.traduler.review.dto.ReviewRequest;
@@ -25,6 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewResponse> getReviews(ReviewRequest requestDto) {
         List<ReviewEntity> entityList = repo.findAllByThemeListOrderByReviewIdDesc(requestDto.getThemeList());
+
         List<ReviewResponse> responseList = new ArrayList<>();
         entityList.forEach( e -> {
             responseList.add(new ReviewResponse(e));
@@ -33,10 +35,14 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ReviewResponse addReview(ReviewRequest requestDto) {
+    public ReviewResponse addReview(ReviewRequest requestDto) throws Exception {
         log.info("**** addreview ::", requestDto.toString());
-        ReviewEntity reviewEntity =requestDto.toReviewEntity();
-        repo.save(reviewEntity);
+        ReviewEntity reviewEntity = repo.save(requestDto.toReviewEntity());
+        List<FileEntity> fileList = fileHandler.saveFile(requestDto.getFiles(), requestDto.getUserId(), reviewEntity.getReviewId());
+        for(FileEntity file : fileList){
+            reviewEntity.getThemeList().addFile(file);
+            fileRepo.save(file);
+        }
         return new ReviewResponse(reviewEntity);
     }
 }

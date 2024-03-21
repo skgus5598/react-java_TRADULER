@@ -59,9 +59,10 @@ public class ThemeListController {
         return new ResponseEntity(service.addPlace(requestDto), HttpStatus.OK);
     }
 
-    @GetMapping("/readImages/{fileName}")
-    public void readImages(@PathVariable String fileName, HttpServletResponse response) throws IOException {
-        fileHandler.readImages(fileName, response, fileRepo.findByOriginalFileName(fileName) );
+    @GetMapping("/readImages/{type}/{fileName}")
+    public void readImages(@PathVariable String type, @PathVariable String fileName, HttpServletResponse response) throws IOException {
+        System.out.println("type? " + type);
+        fileHandler.readImages(type, fileName, response, fileRepo.findByOriginalFileName(fileName) );
     }
 
     @DeleteMapping("/deleteContent/{placeId}")

@@ -12,4 +12,6 @@ public interface FileRepository extends JpaRepository<FileEntity, String> {
 
     // FindBy FK --> findBy+ EntityName + _fk
     List<FileEntity> findAllByThemeList_PlaceId(Long placeId);
+
+
 }

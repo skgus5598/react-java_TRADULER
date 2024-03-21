@@ -1,5 +1,6 @@
 package com.raina.traduler.review.repository;
 
+import com.raina.traduler.fileStorage.FileEntity;
 import com.raina.traduler.review.dto.ReviewRequest;
 import com.raina.traduler.review.entity.ReviewEntity;
 import com.raina.traduler.themeList.entity.ThemeListEntity;

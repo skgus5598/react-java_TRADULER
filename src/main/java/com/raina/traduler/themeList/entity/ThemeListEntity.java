@@ -55,7 +55,6 @@ public class ThemeListEntity {
 
     //Review
     @OneToMany(mappedBy = "themeList", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @OrderBy("reviewId desc")
     private List<ReviewEntity> review;
 
 

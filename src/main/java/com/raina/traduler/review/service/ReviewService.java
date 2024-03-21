@@ -9,6 +9,6 @@ import java.util.List;
 public interface ReviewService {
 
     public List<ReviewResponse> getReviews(ReviewRequest requestDto);
-    public ReviewResponse addReview(ReviewRequest requestDto);
+    public ReviewResponse addReview(ReviewRequest requestDto) throws Exception;
 
 }
