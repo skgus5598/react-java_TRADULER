@@ -1,5 +1,6 @@
 package com.raina.traduler.fileStorage;
 
+import com.raina.traduler.review.entity.ReviewEntity;
 import com.raina.traduler.themeInfo.entity.ThemeInfoEntity;
 import com.raina.traduler.themeList.entity.ThemeListEntity;
 import jakarta.persistence.*;
@@ -13,6 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Getter
@@ -68,7 +70,5 @@ public class FileEntity {
      //   entity.getFileEntity().add(this);
     }
 */
-
-
 
 }

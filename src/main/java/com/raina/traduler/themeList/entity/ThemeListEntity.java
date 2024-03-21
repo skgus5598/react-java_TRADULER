@@ -1,6 +1,7 @@
 package com.raina.traduler.themeList.entity;
 
 import com.raina.traduler.fileStorage.FileEntity;
+import com.raina.traduler.review.entity.ReviewEntity;
 import com.raina.traduler.themeInfo.entity.ThemeInfoEntity;
 import com.raina.traduler.themeList.dto.ThemeListResponse;
 import jakarta.persistence.*;
@@ -51,6 +52,11 @@ public class ThemeListEntity {
        entity.setThemeList(this);
        files.add(entity);
     }
+
+    //Review
+    @OneToMany(mappedBy = "themeList", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("reviewId desc")
+    private List<ReviewEntity> review;
 
 
 }

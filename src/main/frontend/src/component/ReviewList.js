@@ -1,20 +1,37 @@
 import {useEffect, useState} from "react";
+import axios from "axios";
 
+const ReviewList = (props) => { // props : placeId
 
-const ReviewList = () => {
+    const[reviews, setReviews] = useState([]);
+
     const [files, setFiles] = useState([]);
     const [user, setUser] = useState([]);
-    const [control, setControl] = useState(true)
+    const [control, setControl] = useState(true);
+
+    const [toggle, setToggle] = useState(false);
+
+    //form
+    const [content, setContent] = useState('');
+    const [placeId, setPlaceId] = useState(props.placeId);
 
     useEffect(() => {
         const ifUser = localStorage.getItem("userCookie");
         if (ifUser) {
             setUser(JSON.parse(ifUser));
         }
-
         document.getElementsByClassName("writeReview")[0].style.display="none";
-
-    }, [])
+        //reviewList
+        axios.get("http://localhost:8899/getReviews", {
+            params: {
+                themeList : placeId
+            }
+        }, {
+            headers : {"Content-Type" : "application/json"}
+        }).then( res => {
+            setReviews(res.data);
+        })
+    }, [toggle])
 
     const handleFileChange = (e) => {
         const newFiles = [...e.target.files];
@@ -37,11 +54,27 @@ const ReviewList = () => {
         setFiles(newFiles);
     }
 
-    const submitHandler = () => {
-       
-        console.log("validation check-----");
-        console.log("files: \n" + files.length);
-        console.log("userId : " + user.value)
+    const submitHandler = (e) => {
+        e.preventDefault();
+        if(user.value == '' || user.value == null || user.value == undefined){
+            alert(" Please Login first");
+            return false;
+        }else{
+            axios.post('http://localhost:8899/addReview', {
+                themeList : placeId,
+                userId : user.value,
+                content : content,
+                files : files
+            }, {
+                headers : {
+                    "Content-Type" : "multipart/form-data"
+                }
+            }).then( res => {
+                alert("Submit Success!")
+                setToggle(!toggle);
+            }).catch( () => alert("failed"));
+            
+        }
 
     }
 
@@ -51,7 +84,6 @@ const ReviewList = () => {
         }else{
             document.getElementsByClassName("writeReview")[0].style.display="none";
         }
-
     }
 
     return(
@@ -71,12 +103,13 @@ const ReviewList = () => {
 
             {/* Write Review */}
             <section className="writeReview">
+                <form onSubmit={submitHandler}>
                 <div style={{display:"flex"}}>
                     <h2>Rating</h2>
                     <span>⭐️ ⭐️ ⭐️ ⭐️ </span>
                 </div>
                 <h2>How was your experience?</h2>
-                <textarea placeholder="Tell us all about your experience!" />
+                <textarea onChange={(e) => setContent(e.target.value)} placeholder="Tell us all about your experience!" />
                 <h2>Add Photo</h2>
                 <div> {imgPreview} </div>
                 <input type="file" 
@@ -87,24 +120,27 @@ const ReviewList = () => {
                 
                 <div style={{textAlign:"center"}}>
                     <br/>
-                    <button onClick={() => {submitHandler()}}>submit</button>
+                    <button type="submit">submit</button>
                 </div>
+                </form>
                 <hr/>
             </section>
 
             
             <section>
-                <span><b>Abc1233</b> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ &nbsp; |&nbsp; 2021/02/17</span><br/>
-                <span><b>PostTitle</b></span><br/>
-                <span>reviewreviewreviewreviewreviewreviewreviewreviewreview</span><br/>
-                <div>img imgimg</div>
-                <hr/>
-
-                <span><b>Abc1233</b> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ &nbsp; |&nbsp; 2021/02/17</span><br/>
-                <span><b>PostTitle</b></span><br/>
-                <span>reviewreviewreviewreviewreviewreviewreviewreviewreview</span><br/>
-                <div>img imgimg</div>
-                <hr/>
+                {
+                    reviews.map( (e, i) => {
+                        return(
+                            <div key={i}>
+                                <span><b>{e.userId}</b> ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ &nbsp; |&nbsp; {e.regDate}</span><br/>
+                                <span>{e.content}</span><br/>
+                                <div>{e.files}</div>
+                                <hr/>
+                            </div>
+                        )
+                    })
+                }
+                
             </section>
 
     

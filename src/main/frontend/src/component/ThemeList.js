@@ -25,10 +25,7 @@ function ThemeList () {
                 headers : {"Content-Type" : "application/json"}
             })
                 .then( (res) => {
-                    console.log("res.data ::" + JSON.stringify(res.data));
                     setData(res.data);
-
-
                 })
     }, [])
 

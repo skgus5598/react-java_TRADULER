@@ -12,3 +12,18 @@ driving course
 Tasty road
 activity
 healing
+
+
+/* place review file storage
+    => file_storage / crt_id ==> userID (for review)
+        if crt_id == null ==> Admin
+*/
+CREATE TABLE place_review(
+    review_id int primary key auto_increment ,
+    place_id bigint not null ,
+    user_id varchar(50) not null ,
+    content varchar(300) not null,
+    reg_date datetime default current_timestamp,
+    foreign key(place_id) references theme_list(place_id) on delete cascade
+);
+

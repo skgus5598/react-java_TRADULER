@@ -17,7 +17,7 @@ function ThemeView() {
     const data = { ...location.state };
 
 
-    //console.log("data :" + data.contentMain)
+    console.log("data :" + JSON.stringify(data));
 
     const deleteContent = () => {
         if (window.confirm("Are you sure you want to delete this Theme?")) {
@@ -111,7 +111,7 @@ function ThemeView() {
 
 
 
-                <ReviewList />
+                <ReviewList placeId = {data.placeId} />
 
             </div>
         </div>
